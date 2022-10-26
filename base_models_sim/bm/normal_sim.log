@@ -1,0 +1,1485 @@
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in cp/R detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  10.615319744584205
+	Value computed using high-temperature polynomial: 10.773680323194302
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH3O_X(45), discontinuity in h/RT detected at Tmid = 857.63
+	Value computed using low-temperature polynomial:  -16.685067677440152
+	Value computed using high-temperature polynomial: -16.696975757668092
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in cp/R detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  11.305535344771027
+	Value computed using high-temperature polynomial: 11.498562459779828
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH4OX(43), discontinuity in h/RT detected at Tmid = 850.41
+	Value computed using low-temperature polynomial:  -29.00140115033987
+	Value computed using high-temperature polynomial: -29.016903550982903
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in cp/R detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  10.376683280085597
+	Value computed using high-temperature polynomial: 10.625508174038503
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H3X(244), discontinuity in h/RT detected at Tmid = 808.69
+	Value computed using low-temperature polynomial:  -7.463752998943606
+	Value computed using high-temperature polynomial: -7.488021452751267
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species CH2O_X(46), discontinuity in cp/R detected at Tmid = 879.33
+	Value computed using low-temperature polynomial:  8.028071368754187
+	Value computed using high-temperature polynomial: 8.121327346577527
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in cp/R detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  14.375716066851785
+	Value computed using high-temperature polynomial: 14.74763147804613
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: NasaPoly2::validate: 
+For species C2H6X(65), discontinuity in h/RT detected at Tmid = 826.24
+	Value computed using low-temperature polynomial:  -8.789017467264456
+	Value computed using high-temperature polynomial: -8.823625259876868
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'H(12) + X(1) <=> HX(21)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 500.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 1000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'OH(17) + X(1) <=> OHX(31)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])
+simulation.py:92: UserWarning: StickingRate::validate: 
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 2000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 5000.0
+
+ Sticking coefficient is greater than 1 for reaction 'CH3OH(14) + X(1) <=> CH4OX(43)'
+ at T = 10000.0
+
+  surf = ct.Interface(path_to_cti, 'surface1', [gas])

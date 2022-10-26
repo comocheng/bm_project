@@ -1,0 +1,38 @@
+digraph reaction_paths {
+center=1;
+s2 -> s25[fontname="Helvetica", penwidth=5.11, arrowsize=2.56, color="0.7, 0.809, 0.9"
+, label=" 0.309"];
+s3 -> s25[fontname="Helvetica", penwidth=4.79, arrowsize=2.39, color="0.7, 0.7, 0.9"
+, label=" 0.2"];
+s5 -> s25[fontname="Helvetica", penwidth=4.79, arrowsize=2.39, color="0.7, 0.7, 0.9"
+, label=" 0.2"];
+s2 -> s3[fontname="Helvetica", penwidth=3.47, arrowsize=1.73, color="0.7, 0.535, 0.9"
+, label=" 0.0348"];
+s11 -> s2[fontname="Helvetica", penwidth=5.19, arrowsize=2.6, color="0.7, 0.844, 0.9"
+, label=" 0.344"];
+s3 -> s28[fontname="Helvetica", penwidth=4.99, arrowsize=2.5, color="0.7, 0.763, 0.9"
+, label=" 0.263"];
+s5 -> s3[fontname="Helvetica", penwidth=5.36, arrowsize=2.68, color="0.7, 0.927, 0.9"
+, label=" 0.427"];
+s24 -> s5[fontname="Helvetica", penwidth=6, arrowsize=3, color="0.7, 1.5, 0.9"
+, label=" 1"];
+s5 -> s11[fontname="Helvetica", penwidth=5.25, arrowsize=2.63, color="0.7, 0.872, 0.9"
+, label=" 0.372"];
+s11 -> s12[fontname="Helvetica", penwidth=2.71, arrowsize=1.35, color="0.7, 0.513, 0.9"
+, label=" 0.0127"];
+s11 -> s26[fontname="Helvetica", penwidth=2.81, arrowsize=1.41, color="0.7, 0.515, 0.9"
+, label=" 0.0146"];
+s12 -> s26[fontname="Helvetica", penwidth=2.71, arrowsize=1.35, color="0.7, 0.513, 0.9"
+, label=" 0.0127"];
+s2 [ fontname="Helvetica", label="CO2X(22)"];
+s3 [ fontname="Helvetica", label="COX(23)"];
+s5 [ fontname="Helvetica", label="OX(25)"];
+s11 [ fontname="Helvetica", label="OHX(31)"];
+s12 [ fontname="Helvetica", label="H2OX(32)"];
+s24 [ fontname="Helvetica", label="O2(3)"];
+s25 [ fontname="Helvetica", label="CO2(4)"];
+s26 [ fontname="Helvetica", label="H2O(5)"];
+s28 [ fontname="Helvetica", label="CO(7)"];
+ label = "Scale = 0.0062\l Orxn path";
+ fontname = "Helvetica";
+}

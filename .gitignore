@@ -1,0 +1,8 @@
+*~
+*/.ipynb_checkpoints/*
+*.csv
+PES_plotter
+**/.ipynb_check_points
+**/logs
+**/logs_arr
+

@@ -1,0 +1,1907 @@
+generator: ck2yaml
+input-files: [chem_annotated-gas.inp, chem_annotated-gas.inp, tran.dat,
+  chem_annotated-surface.inp]
+cantera-version: 2.6.0b1
+date: Thu, 28 Apr 2022 17:06:25 -0400
+
+units: {length: cm, time: s, quantity: mol, activation-energy: kcal/mol}
+
+phases:
+- name: gas
+  thermo: ideal-gas
+  elements: [H, D, T, C, Ci, O, Oi, N, Ne, Ar, He, Si, S, F, Cl, Br, I,
+    X, H, D, T, C, Ci, O, Oi, N, Ne, Ar, He, Si, S, F, Cl, Br, I, X]
+  species: [Ar, Ne, N2, CH4(2), O2(3), CO2(4), H2O(5), H2(6), CO(7), C2H6(8),
+    CH2O(9), CH3(10), C3H8(11), H(12), C2H5(13), CH3OH(14), HCO(15), CH3CHO(16),
+    OH(17), C2H4(18), CH3OO(20), C2H4(62)]
+  kinetics: gas
+  reactions:
+  - gas-reactions
+  transport: mixture-averaged
+  state: {T: 300.0, P: 1 atm}
+- name: surface1
+  thermo: ideal-surface
+  adjacent-phases: [gas]
+  elements: [H, D, T, C, Ci, O, Oi, N, Ne, Ar, He, Si, S, F, Cl, Br, I,
+    X, H, D, T, C, Ci, O, Oi, N, Ne, Ar, He, Si, S, F, Cl, Br, I, X]
+  species: [X(1), HX(21), CO2X(22), COX(23), CH4X(24), OX(25), CH2X(26),
+    CH3X(27), CHX(28), CX(29), H2X(30), OHX(31), H2OX(32), CHOX(33), CHOX(234),
+    CH3O_X(45), CH4OX(43), C2H3X(244), CH2O_X(46), C2H6X(65)]
+  site-density: 2.483e-09
+  kinetics: surface
+  reactions:
+  - surface1-reactions
+  state: {T: 300.0, P: 1 atm}
+
+elements:
+- symbol: Ci
+  atomic-weight: 13.003
+- symbol: D
+  atomic-weight: 2.014
+- symbol: Oi
+  atomic-weight: 17.999
+- symbol: T
+  atomic-weight: 3.016
+- symbol: X
+  atomic-weight: 195.083
+
+species:
+- name: Ar
+  composition: {Ar: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [2.5, 0.0, 0.0, 0.0, 0.0, -745.375, 4.37967]
+    - [2.5, 0.0, 0.0, 0.0, 0.0, -745.375, 4.37967]
+    note: 'Thermo library: primaryThermoLibrary'
+  transport:
+    model: gas
+    geometry: atom
+    well-depth: 136.501
+    diameter: 3.33
+    note: GRI-Mech
+  note: Ar
+- name: Ne
+  composition: {Ne: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [2.5, 0.0, 0.0, 0.0, 0.0, -745.375, 3.35532]
+    - [2.5, 0.0, 0.0, 0.0, 0.0, -745.375, 3.35532]
+    note: 'Thermo library: primaryThermoLibrary'
+  transport:
+    model: gas
+    geometry: atom
+    well-depth: 148.6
+    diameter: 3.758
+    note: Epsilon & sigma estimated with fixed Lennard Jones Parameters.
+      This is the fallback method! Try improving transport databases!
+  note: Ne
+- name: N2
+  composition: {N: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [3.53101, -1.23661e-04, -5.02999e-07, 2.43531e-09, -1.40881e-12, -1046.98,
+      2.96747]
+    - [2.95258, 1.3969e-03, -4.92632e-07, 7.8601e-11, -4.60755e-15, -923.949,
+      5.87189]
+    note: 'Thermo library: primaryThermoLibrary'
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 97.53
+    diameter: 3.621
+    polarizability: 1.76
+    rotational-relaxation: 4.0
+    note: PrimaryTransportLibrary
+  note: N2
+- name: CH4(2)
+  composition: {C: 1, H: 4}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1084.12, 5000.0]
+    data:
+    - [4.20541524, -5.35557362e-03, 2.51123265e-05, -2.13762843e-08, 5.97523937e-12,
+      -1.01619433e+04, -0.921279283]
+    - [0.908265721, 0.0114540858, -4.57173828e-06, 8.29191671e-10, -5.66314895e-14,
+      -9719.97444, 13.9930944]
+    note: 'Thermo library: primaryThermoLibrary'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 141.4
+    diameter: 3.746
+    polarizability: 2.6
+    rotational-relaxation: 13.0
+    note: GRI-Mech
+  note: CH4(2)
+- name: O2(3)
+  composition: {O: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1074.56, 5000.0]
+    data:
+    - [3.53732181, -1.2157093e-03, 5.31617826e-06, -4.89443424e-09, 1.45845042e-12,
+      -1038.58846, 4.68368406]
+    - [3.15382425, 1.67803802e-03, -7.69971022e-07, 1.51274714e-10, -1.08781801e-14,
+      -1040.81878, 6.16753884]
+    note: 'Thermo library: primaryThermoLibrary'
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 106.7
+    diameter: 3.467
+    note: PrimaryTransportLibrary
+  note: O2(3)
+- name: CO2(4)
+  composition: {C: 1, O: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 978.21, 5000.0]
+    data:
+    - [3.28084634, 2.5018346e-03, 8.08199998e-06, -1.20511416e-08, 4.66547255e-12,
+      -4.84008304e+04, 6.00080795]
+    - [4.67426743, 2.60964031e-03, -9.85689857e-07, 1.95713857e-10, -1.49836245e-14,
+      -4.8951214e+04, -2.11073617]
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 195.201
+    diameter: 3.941
+    note: PrimaryTransportLibrary
+  note: CO2(4)
+- name: H2O(5)
+  composition: {H: 2, O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1130.24, 5000.0]
+    data:
+    - [4.0576361, -7.87938871e-04, 2.9087848e-06, -1.47520039e-09, 2.12847506e-13,
+      -3.02815866e+04, -0.311365027]
+    - [2.84324866, 2.75108838e-03, -7.8103312e-07, 1.07244016e-10, -5.79395308e-15,
+      -2.9958612e+04, 5.91043011]
+    note: 'Thermo library: primaryThermoLibrary'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 809.102
+    diameter: 2.641
+    polarizability: 1.76
+    rotational-relaxation: 4.0
+    note: PrimaryTransportLibrary
+  note: H2O(5)
+- name: H2(6)
+  composition: {H: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1959.08, 5000.0]
+    data:
+    - [3.43536412, 2.12710353e-04, -2.78625043e-07, 3.40267167e-10, -7.76031998e-14,
+      -1031.35984, -3.90841732]
+    - [2.78816583, 5.87640942e-04, 1.59010417e-07, -5.52739026e-11, 4.34310984e-15,
+      -596.14427, 0.112732655]
+    note: 'Thermo library: primaryThermoLibrary'
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 59.7
+    diameter: 2.833
+    note: PrimaryTransportLibrary
+  note: H2(6)
+- name: CO(7)
+  composition: {C: 1, O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1571.63, 5000.0]
+    data:
+    - [3.56838038, -8.521295e-04, 2.48918819e-06, -1.56331996e-09, 3.13598127e-13,
+      -1.4284255e+04, 3.57912028]
+    - [2.91305202, 1.64659937e-03, -6.88625686e-07, 1.21039677e-10, -7.84035796e-15,
+      -1.41808768e+04, 6.71054299]
+    note: 'Thermo library: primaryThermoLibrary'
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 91.7
+    diameter: 3.69
+    polarizability: 1.76
+    rotational-relaxation: 4.0
+    note: PrimaryTransportLibrary
+  note: CO(7)
+- name: C2H6(8)
+  composition: {C: 2, H: 6}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1012.42, 5000.0]
+    data:
+    - [3.72239291, 1.65083841e-03, 3.4417553e-05, -3.76858229e-08, 1.24450657e-11,
+      -1.15575901e+04, 4.68247999]
+    - [2.82848257, 0.0173040568, -6.73334245e-06, 1.23742024e-09, -8.6567641e-14,
+      -1.1997808e+04, 5.93811707]
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 252.301
+    diameter: 4.302
+    rotational-relaxation: 1.5
+    note: GRI-Mech
+  note: C2H6(8)
+- name: CH2O(9)
+  composition: {C: 1, H: 2, O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1070.44, 5000.0]
+    data:
+    - [4.12927802, -4.08401318e-03, 2.03229341e-05, -1.83524244e-08, 5.37975522e-12,
+      -1.4429464e+04, 3.22418463]
+    - [2.21172442, 7.94265679e-03, -3.34193053e-06, 6.28471401e-10, -4.40431446e-14,
+      -1.42974456e+04, 11.3048985]
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 498.002
+    diameter: 3.59
+    rotational-relaxation: 2.0
+    note: GRI-Mech
+  note: CH2O(9)
+- name: CH3(10)
+  composition: {C: 1, H: 3}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 697.71, 5000.0]
+    data:
+    - [3.96043098, 5.92939934e-04, 8.7857539e-06, -9.88030557e-09, 3.6323458e-12,
+      1.64218818e+04, 0.339865631]
+    - [3.09511187, 5.55429874e-03, -1.88158855e-06, 3.13335012e-10, -2.05195181e-14,
+      1.65426192e+04, 4.20297876]
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 144.001
+    diameter: 3.8
+    note: GRI-Mech
+  note: CH3(10)
+- name: C3H8(11)
+  composition: {C: 3, H: 8}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 989.99, 5000.0]
+    data:
+    - [3.06336167, 0.0129214561, 3.47032808e-05, -4.70946154e-08, 1.71384141e-11,
+      -1.43905789e+04, 10.7835592]
+    - [5.60440043, 0.0219528785, -8.2208061e-06, 1.50103993e-09, -1.05635358e-13,
+      -1.58394038e+04, -6.226233]
+    note: 'Thermo library: DFT_QCI_thermo'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 266.801
+    diameter: 4.982
+    rotational-relaxation: 1.0
+    note: GRI-Mech
+  note: C3H8(11)
+- name: H(12)
+  composition: {H: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 3459.6, 5000.0]
+    data:
+    - [2.5, 9.24384602e-15, -1.36779837e-17, 6.66184769e-21, -1.00106912e-24,
+      2.54742178e+04, -0.444972896]
+    - [2.49999999, 9.20455546e-12, -3.58608293e-15, 6.15198922e-19, -3.92041801e-23,
+      2.54742178e+04, -0.444972842]
+    note: 'Thermo library: primaryThermoLibrary'
+  transport:
+    model: gas
+    geometry: atom
+    well-depth: 145.0
+    diameter: 2.05
+    note: GRI-Mech
+  note: H(12)
+- name: C2H5(13)
+  composition: {C: 2, H: 5}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1006.87, 5000.0]
+    data:
+    - [3.68746539, 3.06889693e-03, 2.55873112e-05, -2.94076576e-08, 9.94076215e-12,
+      1.31153648e+04, 6.96684864]
+    - [3.5378101, 0.0137311636, -5.29564638e-06, 9.71482858e-10, -6.8028949e-14,
+      1.2635179e+04, 5.15566048]
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 252.301
+    diameter: 4.302
+    rotational-relaxation: 1.5
+    note: GRI-Mech
+  note: C2H5(13)
+- name: CH3OH(14)
+  composition: {C: 1, H: 4, O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1035.75, 5000.0]
+    data:
+    - [3.84006214, 1.38241998e-03, 1.91667191e-05, -2.0156866e-08, 6.39102259e-12,
+      -2.56083087e+04, 5.90978137]
+    - [2.79184298, 0.0115827852, -4.51551928e-06, 8.21206706e-10, -5.6706325e-14,
+      -2.57211674e+04, 9.41061586]
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 481.802
+    diameter: 3.626
+    rotational-relaxation: 1.0
+    note: GRI-Mech
+  note: CH3OH(14)
+- name: HCO(15)
+  composition: {C: 1, H: 1, O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1112.1, 5000.0]
+    data:
+    - [4.05936407, -1.73846452e-03, 9.14981041e-06, -8.01131526e-09, 2.25737264e-12,
+      3843.77617, 3.32449702]
+    - [3.05136186, 4.11706437e-03, -1.75586433e-06, 3.29302821e-10, -2.2917403e-14,
+      3930.07923, 7.67464289]
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 498.002
+    diameter: 3.59
+    note: GRI-Mech
+  note: HCO(15)
+- name: CH3CHO(16)
+  composition: {C: 2, H: 4, O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1028.81, 5000.0]
+    data:
+    - [3.57991319, 5.18996203e-03, 2.2689306e-05, -2.73736957e-08, 9.28455869e-12,
+      -2.13697369e+04, 8.96975431]
+    - [4.08568882, 0.0139060358, -5.59365394e-06, 1.04608143e-09, -7.38729265e-14,
+      -2.20391558e+04, 3.76773341]
+    note: 'Thermo library: DFT_QCI_thermo'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 436.001
+    diameter: 3.97
+    rotational-relaxation: 2.0
+    note: GRI-Mech
+  note: CH3CHO(16)
+- name: OH(17)
+  composition: {H: 1, O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1145.75, 5000.0]
+    data:
+    - [3.51456768, 2.92814373e-05, -5.32176582e-07, 1.01950588e-09, -3.85951152e-13,
+      3414.25421, 2.10435015]
+    - [3.07194246, 6.04011411e-04, -1.39759127e-08, -2.13451563e-11, 2.48070095e-15,
+      3579.38557, 4.577985]
+    note: 'Thermo library: primaryThermoLibrary'
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 80.0
+    diameter: 2.75
+    note: GRI-Mech
+  note: OH(17)
+- name: C2H4(18)
+  composition: {C: 2, H: 4}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 979.36, 5000.0]
+    data:
+    - [3.97471606, -4.75844285e-03, 4.1678377e-05, -4.51392516e-08, 1.54224761e-11,
+      4915.40746, 3.62430844]
+    - [3.5566061, 0.0110627464, -4.17019079e-06, 7.8558677e-10, -5.70060829e-14,
+      4320.46489, 2.17719479]
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 280.801
+    diameter: 3.971
+    rotational-relaxation: 1.5
+    note: GRI-Mech
+  note: C2H4(18)
+- name: CH3OO(20)
+  composition: {C: 1, H: 3, O: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 1031.35, 5000.0]
+    data:
+    - [3.58600855, 6.15348645e-03, 1.3326929e-05, -1.76581521e-08, 6.13210932e-12,
+      248.233564, 9.74096027]
+    - [4.35022282, 0.0107183275, -4.26215078e-06, 7.89578335e-10, -5.53846326e-14,
+      -309.810145, 4.08928223]
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 417.0
+    diameter: 3.69
+    dipole: 1.7
+    rotational-relaxation: 2.0
+    note: NOx2018
+  note: CH3OO(20)
+- name: C2H4(62)
+  composition: {C: 2, H: 4}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 846.11, 5000.0]
+    data:
+    - [3.36869114, 0.0164232504, -2.16503709e-05, 2.18227984e-08, -8.70182877e-12,
+      4.28682838e+04, 21.8539333]
+    - [2.6234491, 0.013842914, -6.25541075e-06, 1.16703453e-09, -7.9535941e-14,
+      4.32128675e+04, 26.6158079]
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 110.7
+    diameter: 4.443
+    note: Epsilon & sigma estimated with fixed Lennard Jones Parameters.
+      This is the fallback method! Try improving transport databases!
+  note: CHCH3(S)(62)
+- name: X(1)
+  composition: {X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 3000.0]
+    data:
+    - [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    - [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: HX(21)
+  composition: {H: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [-1.96702988, 0.0167920714, -2.50314139e-05, 1.80485455e-08, -5.11491197e-12,
+      -3212.77026, 7.68211257]
+    - [2.71968546, -1.07696656e-03, 2.00193294e-06, -1.12865983e-09, 2.11269165e-13,
+      -4247.01712, -15.279349]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CO2X(22)
+  composition: {C: 1, O: 2, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [100.0, 953.6, 5000.0]
+    data:
+    - [3.09268416, 5.29285051e-03, 8.99424169e-06, -1.67126189e-08, 7.04895731e-12,
+      -5.24627108e+04, -4.06894637]
+    - [5.99804988, 2.27482238e-03, -6.81075329e-07, 1.34428306e-10, -1.11506248e-14,
+      -5.34337089e+04, -20.1334826]
+    note: |-
+      Gas phase thermo for CO2 from Thermo library: thermo_DFT_CCSDTF12_BAC. Adsorption correction: + Thermo group additivity estimation:
+      adsorptionPt111(R*vdW)
+- name: COX(23)
+  composition: {C: 1, O: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [2.70112272, 8.76650166e-03, -1.29512418e-05, 1.04194594e-08, -3.3970049e-12,
+      -3.49476634e+04, -12.8730512]
+    - [5.5282088, -1.52631254e-03, 2.79791895e-06, -1.54550129e-09, 2.84523223e-13,
+      -3.5623128e+04, -26.9156979]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CH4X(24)
+  composition: {C: 1, H: 4, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [5.26247002, -7.42703413e-03, 3.36472336e-05, -3.2940115e-08, 1.1025925e-11,
+      -1.1603832e+04, -10.0920541]
+    - [9.54981008, -0.0103719404, 1.83183536e-05, -9.63332916e-09, 1.70558531e-12,
+      -1.32717208e+04, -34.5374475]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: OX(25)
+  composition: {O: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [0.179722382, 0.0125453156, -2.29924588e-05, 1.94187177e-08, -6.22414099e-12,
+      -1.73402246e+04, -2.22409728]
+    - [2.92050897, -2.70455589e-04, 5.15610634e-07, -2.93911213e-10, 5.54030466e-14,
+      -1.78369003e+04, -15.0940536]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CH2X(26)
+  composition: {C: 1, H: 2, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [-2.26602367, 0.0292517765, -4.32728797e-05, 3.30655723e-08, -9.93242641e-12,
+      -223.619445, 8.22751288]
+    - [6.82572636, -5.17192506e-03, 9.19551938e-06, -4.87101486e-09, 8.67713091e-13,
+      -2268.86621, -36.4410753]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CH3X(27)
+  composition: {C: 1, H: 3, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [0.580099877, 0.0166399977, -1.3916487e-05, 6.70631582e-09, -1.31079175e-12,
+      -6310.46932, -0.757148375]
+    - [8.67869881, -7.8423842e-03, 1.38956076e-05, -7.3360019e-09, 1.30321431e-12,
+      -8450.79729, -42.0966823]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CHX(28)
+  composition: {C: 1, H: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [-3.00950779, 0.0302193341, -4.99546294e-05, 3.99478464e-08, -1.23021593e-11,
+      -3133.53859, 11.2314464]
+    - [4.88482023, -2.70846119e-03, 4.84648118e-06, -2.58513645e-09, 4.63180319e-13,
+      -4750.828, -26.7870735]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CX(29)
+  composition: {C: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [-1.73430697, 0.0189855471, -3.23563661e-05, 2.5926989e-08, -7.99102104e-12,
+      6363.85922, 6.25445028]
+    - [2.82193241, -6.61177416e-04, 1.24180431e-06, -7.03993893e-10, 1.32276605e-13,
+      5464.67816, -15.5251271]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: H2X(30)
+  composition: {H: 2, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [3.78935111, 1.10148021e-03, -2.313201e-06, 2.11937826e-09, -6.31350224e-13,
+      -1867.00333, -10.0616465]
+    - [4.06700165, -5.01780079e-04, 6.70738856e-07, -1.79170942e-10, 8.86886631e-15,
+      -1891.07687, -11.2621699]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: OHX(31)
+  composition: {H: 1, O: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [1.07348583, 0.0172652206, -3.17712232e-05, 2.71536568e-08, -8.69449304e-12,
+      -1.96002909e+04, -5.65622336]
+    - [5.01870328, -1.35424298e-03, 2.2768631e-06, -1.09407298e-09, 1.79396487e-13,
+      -2.02979842e+04, -24.1159621]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: H2OX(32)
+  composition: {H: 2, O: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [2.53777266, 9.4537201e-03, -1.41325664e-05, 1.16730945e-08, -3.6765764e-12,
+      -3.27590463e+04, -5.36548561]
+    - [5.84789466, -3.31526816e-03, 5.62018785e-06, -2.75864893e-09, 4.61279066e-13,
+      -3.34885608e+04, -21.5622699]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CHOX(33)
+  composition: {C: 1, H: 1, O: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [1.94156388, 0.0130882912, -1.34260003e-05, 7.97044677e-09, -2.06719711e-12,
+      -2.80413711e+04, -5.97802577]
+    - [7.49136303, -4.18949199e-03, 7.54544313e-06, -4.07863095e-09, 7.38421146e-13,
+      -2.94916141e+04, -34.207664]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CHOX(234)
+  composition: {C: 1, H: 1, O: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [0.863437744, 0.0214806054, -3.00009525e-05, 2.11729011e-08, -5.90923491e-12,
+      -3.09990999e+04, -5.10749731]
+    - [7.59479056, -3.06847382e-03, 5.43592647e-06, -2.8646356e-09, 5.09149225e-13,
+      -3.25424988e+04, -38.3674793]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CH3O_X(45)
+  composition: {C: 1, H: 3, O: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [2.88933974, 0.0102968448, 5.34962049e-06, -1.25531705e-08, 5.3215661e-12,
+      -2.04952765e+04, -11.5047899]
+    - [11.2817565, -9.42267565e-03, 1.67985868e-05, -8.95802947e-09, 1.60456258e-12,
+      -2.29996396e+04, -55.7516428]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CH4OX(43)
+  composition: {C: 1, H: 4, O: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [2.70506726, 0.0100913594, 1.0026068e-05, -1.80909603e-08, 7.44539499e-12,
+      -3.09647604e+04, -4.4813596]
+    - [12.1539459, -0.0113173411, 2.00342036e-05, -1.05724068e-08, 1.87852776e-12,
+      -3.38115989e+04, -54.4617359]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: C2H3X(244)
+  composition: {C: 2, H: 3, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [0.157603104, 0.0234293413, -1.86683661e-05, 7.2923437e-09, -8.79008671e-13,
+      -1.12523534e+04, -1.73582278]
+    - [11.3050336, -9.40622931e-03, 1.67935678e-05, -8.969015e-09, 1.60855621e-12,
+      -1.42348165e+04, -58.836379]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: CH2O_X(46)
+  composition: {C: 1, H: 2, O: 1, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [4.87258154, -3.80708439e-03, 2.29126729e-05, -2.34870004e-08, 7.9545745e-12,
+      -2.09616356e+04, -10.9618928]
+    - [8.42973399, -6.84404724e-03, 1.22430399e-05, -6.56317791e-09, 1.18019535e-12,
+      -2.23198421e+04, -31.1097315]
+    note: 'Thermo library: surfaceThermoPt111'
+- name: C2H6X(65)
+  composition: {C: 2, H: 6, X: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [298.0, 1000.0, 2000.0]
+    data:
+    - [3.19974851, 7.93841719e-03, 2.69413164e-05, -3.53453703e-08, 1.32207821e-11,
+      -1.45807566e+04, -1.67952705]
+    - [15.9169609, -0.017561686, 3.12255463e-05, -1.65874969e-08, 2.96156965e-12,
+      -1.86136199e+04, -69.8567509]
+    note: 'Thermo library: surfaceThermoPt111'
+
+gas-reactions:
+- equation: H2(6) + M <=> H(12) + H(12) + M  # Reaction 1
+  type: three-body
+  rate-constant: {A: 4.577e+19, b: -1.4, Ea: 104.38}
+  efficiencies: {H2O(5): 12.0, H2(6): 2.5, CO(7): 1.9, CO2(4): 3.8, Ar: 0.0}
+  note: |-
+    Reaction index: Chemkin #1; RMG #60
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: H2(6), H(12); H2(6), H(12);
+- equation: Ar + H2(6) <=> Ar + H(12) + H(12)  # Reaction 2
+  rate-constant: {A: 5.84e+18, b: -1.1, Ea: 104.38}
+  note: |-
+    Reaction index: Chemkin #2; RMG #61
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: H2(6), H(12); Ar, Ar; Ar, H(12);
+- equation: OH(17) + H2(6) <=> H(12) + H2O(5)  # Reaction 3
+  rate-constant: {A: 2.16e+08, b: 1.51, Ea: 3.43}
+  note: |-
+    Reaction index: Chemkin #3; RMG #58
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: OH(17), H2O(5); H2(6), H(12);
+- equation: H2O(5) + M <=> H(12) + OH(17) + M  # Reaction 4
+  type: three-body
+  rate-constant: {A: 6.064e+27, b: -3.322, Ea: 120.79}
+  efficiencies: {H2(6): 3.0, H2O(5): 0.0, CO(7): 1.9, CO2(4): 3.8, O2(3): 1.5,
+    N2: 2.0}
+  note: |-
+    Reaction index: Chemkin #4; RMG #67
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: H2O(5), H(12); H2O(5), OH(17);
+- equation: H2O(5) + H2O(5) <=> H(12) + OH(17) + H2O(5)  # Reaction 5
+  rate-constant: {A: 1.006e+26, b: -2.44, Ea: 120.18}
+  note: |-
+    Reaction index: Chemkin #5; RMG #68
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: H2O(5), H2O(5); H2O(5), H(12); H2O(5), OH(17);
+- equation: OH(17) + OH(17) <=> O2(3) + H2(6)  # Reaction 6
+  rate-constant: {A: 2.0e+11, b: 0.51, Ea: 50.5}
+  note: |-
+    Reaction index: Chemkin #6; RMG #82
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: OH(17), O2(3); OH(17), H2(6);
+- equation: H(12) + CH3(10) <=> CH4(2)  # Reaction 7
+  rate-constant: {A: 1.93e+14, b: 0.0, Ea: 0.27}
+  note: |-
+    Reaction index: Chemkin #7; RMG #87
+    Template reaction: R_Recombination
+    Flux pairs: CH3(10), CH4(2); H(12), CH4(2);
+    Matched reaction 57 H + CH3 <=> CH4 in R_Recombination/training
+    This reaction matched rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_N-2CNO->O]
+    family: R_Recombination
+- equation: CH3(10) + CH3(10) <=> C2H6(8)  # Reaction 8
+  rate-constant: {A: 9.45e+14, b: -0.538, Ea: 0.135}
+  note: |-
+    Reaction index: Chemkin #8; RMG #89
+    Template reaction: R_Recombination
+    Flux pairs: CH3(10), C2H6(8); CH3(10), C2H6(8);
+    Matched reaction 9 CH3 + CH3 <=> C2H6 in R_Recombination/training
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_N-1COS->O_1CS->C_N-1C-inRing]
+    family: R_Recombination
+- equation: H(12) + C2H5(13) <=> C2H6(8)  # Reaction 9
+  rate-constant: {A: 1.0e+14, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #9; RMG #90
+    Template reaction: R_Recombination
+    Flux pairs: C2H5(13), C2H6(8); H(12), C2H6(8);
+    Matched reaction 58 H + C2H5 <=> C2H6-2 in R_Recombination/training
+    This reaction matched rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_Ext-2CNO-R_N-Sp-3R!H=2CCNNOO_N-2CNO->O_3R!H->C_Sp-3C-2CN]
+    family: R_Recombination
+- equation: H2(6) + CO(7) <=> CH2O(9)  # Reaction 10
+  rate-constant: {A: 2.89e+09, b: 1.16, Ea: 82.1}
+  note: |-
+    Reaction index: Chemkin #10; RMG #91
+    Template reaction: 1,2_Insertion_CO
+    Flux pairs: CO(7), CH2O(9); H2(6), CH2O(9);
+    Matched reaction 2 H2 + CO <=> CH2O in 1,2_Insertion_CO/training
+    This reaction matched rate rule [CO;H2]
+    family: 1,2_Insertion_CO
+- equation: H(12) + HCO(15) <=> CH2O(9)  # Reaction 11
+  rate-constant: {A: 4.68e+10, b: 0.0, Ea: -4.53}
+  note: |-
+    Reaction index: Chemkin #11; RMG #92
+    Template reaction: R_Recombination
+    Flux pairs: HCO(15), CH2O(9); H(12), CH2O(9);
+    Matched reaction 63 H + CHO <=> CH2O in R_Recombination/training
+    This reaction matched rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_Ext-2CNO-R_Sp-3R!H=2CCNNOO_3R!H->O]
+    family: R_Recombination
+- equation: CH3(10) + C2H5(13) <=> C3H8(11)  # Reaction 12
+  rate-constant: {A: 1.23e+15, b: -0.562, Ea: 0.021}
+  note: |-
+    Reaction index: Chemkin #12; RMG #96
+    Template reaction: R_Recombination
+    Flux pairs: C2H5(13), C3H8(11); CH3(10), C3H8(11);
+    Matched reaction 10 CH3 + C2H5 <=> C3H8 in R_Recombination/training
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_N-1COS->O_1CS->C_N-1C-inRing_Ext-2R-R_Sp-3R!H-2R_3R!H->C_2R->C]
+    family: R_Recombination
+- equation: H(12) + C2H4(18) <=> C2H5(13)  # Reaction 13
+  rate-constant: {A: 4.62e+08, b: 1.64, Ea: 1.01}
+  note: |-
+    Reaction index: Chemkin #13; RMG #101
+    Template reaction: R_Addition_MultipleBond
+    Flux pairs: C2H4(18), C2H5(13); H(12), C2H5(13);
+    Matched reaction 2541 H + C2H4 <=> C2H5-2 in R_Addition_MultipleBond/training
+    This reaction matched rate rule [Cds-HH_Cds-HH;HJ]
+    family: R_Addition_MultipleBond
+- equation: OH(17) + CH3(10) <=> CH3OH(14)  # Reaction 14
+  rate-constant: {A: 6.03e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #14; RMG #104
+    Template reaction: R_Recombination
+    Flux pairs: OH(17), CH3OH(14); CH3(10), CH3OH(14);
+    Matched reaction 73 CH3 + OH <=> CH4O in R_Recombination/training
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_1COS->O_2R->C]
+    family: R_Recombination
+- equation: H(12) + CO(7) <=> HCO(15)  # Reaction 15
+  rate-constant: {A: 1.18e+11, b: 0.0, Ea: 2.72}
+  note: |-
+    Reaction index: Chemkin #15; RMG #108
+    Template reaction: R_Addition_COm
+    Flux pairs: CO(7), HCO(15); H(12), HCO(15);
+    Matched reaction 4 H + CO <=> CHO in R_Addition_COm/training
+    This reaction matched rate rule [COm;H_rad]
+    family: R_Addition_COm
+- equation: CO(7) + CH4(2) <=> CH3CHO(16)  # Reaction 16
+  rate-constant: {A: 6.56e+04, b: 2.86, Ea: 86.9}
+  note: |-
+    Reaction index: Chemkin #16; RMG #109
+    Template reaction: 1,2_Insertion_CO
+    Flux pairs: CO(7), CH3CHO(16); CH4(2), CH3CHO(16);
+    Matched reaction 3 CH4 + CO <=> C2H4O in 1,2_Insertion_CO/training
+    This reaction matched rate rule [CO;C_methane]
+    family: 1,2_Insertion_CO
+- equation: HCO(15) + CH3(10) <=> CH3CHO(16)  # Reaction 17
+  rate-constant: {A: 1.81e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #17; RMG #111
+    Template reaction: R_Recombination
+    Flux pairs: HCO(15), CH3CHO(16); CH3(10), CH3CHO(16);
+    Matched reaction 71 CH3 + CHO <=> C2H4O in R_Recombination/training
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_N-1COS->O_1CS->C_N-1C-inRing_Ext-2R-R_N-Sp-3R!H-2R_3R!H->O]
+    family: R_Recombination
+- equation: CH3OO(20) <=> O2(3) + CH3(10)  # Reaction 18
+  rate-constant: {A: 1.09e+14, b: 0.25, Ea: 33.3}
+  note: |-
+    Reaction index: Chemkin #18; RMG #119
+    Template reaction: R_Recombination
+    Flux pairs: CH3OO(20), CH3(10); CH3OO(20), O2(3);
+    Matched reaction 0 CH3O2 <=> O2 + CH3 in R_Recombination/training
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_1COS->O_Ext-1O-R_2R->C_3R!H->O]
+    family: R_Recombination
+- equation: CH3OO(20) <=> OH(17) + CH2O(9)  # Reaction 19
+  rate-constant: {A: 4.71e+08, b: 1.45, Ea: 42.27}
+  note: |-
+    Reaction index: Chemkin #19; RMG #121
+    Template reaction: intra_H_migration
+    Flux pairs: CH3OO(20), OH(17); CH3OO(20), CH2O(9);
+    From training reaction 240 used for R3H_SS_O;O_rad_out;Cs_H_out_2H
+    Exact match found for rate rule [R3H_SS_O;O_rad_out;Cs_H_out_2H]
+    Euclidian distance = 0
+    Multiplied by reaction path degeneracy 3.0
+    family: intra_H_migration
+- equation: HCO(15) + CH3(10) <=> CO(7) + CH4(2)  # Reaction 20
+  rate-constant: {A: 4.0e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #20; RMG #154
+    Template reaction: CO_Disproportionation
+    Flux pairs: CH3(10), CH4(2); HCO(15), CO(7);
+    Matched reaction 3 HCO + CH3 <=> CO + CH4 in CO_Disproportionation/training
+    This reaction matched rate rule [C_methyl;HCO]
+    family: CO_Disproportionation
+- equation: H(12) + CH4(2) <=> H2(6) + CH3(10)  # Reaction 21
+  rate-constant: {A: 4100.0, b: 3.156, Ea: 8.755}
+  note: |-
+    Reaction index: Chemkin #21; RMG #157
+    Template reaction: H_Abstraction
+    Flux pairs: H(12), H2(6); CH4(2), CH3(10);
+    Matched reaction 186 CH4b + H <=> CH3_p1 + H2_p in H_Abstraction/training
+    This reaction matched rate rule [C_methane;H_rad]
+    family: H_Abstraction
+- equation: CH3(10) + C2H6(8) <=> CH4(2) + C2H5(13)  # Reaction 22
+  rate-constant: {A: 35.0, b: 3.44, Ea: 10.384}
+  note: |-
+    Reaction index: Chemkin #22; RMG #158
+    Template reaction: H_Abstraction
+    Flux pairs: C2H6(8), C2H5(13); CH3(10), CH4(2);
+    Matched reaction 215 C2H6 + CH3_r3 <=> C2H5b + CH4 in H_Abstraction/training
+    This reaction matched rate rule [C_methane;C_rad/H2/Cs\H3]
+    family: H_Abstraction
+- equation: HCO(15) + CH4(2) <=> CH2O(9) + CH3(10)  # Reaction 23
+  rate-constant: {A: 7280.0, b: 2.85, Ea: 34.25}
+  note: |-
+    Reaction index: Chemkin #23; RMG #160
+    Template reaction: H_Abstraction
+    Flux pairs: HCO(15), CH2O(9); CH4(2), CH3(10);
+    Matched reaction 318 HCO_r3 + CH4b <=> CH2O + CH3_p1 in H_Abstraction/training
+    This reaction matched rate rule [C_methane;CO_pri_rad]
+    family: H_Abstraction
+- equation: OH(17) + CH4(2) <=> H2O(5) + CH3(10)  # Reaction 24
+  rate-constant: {A: 1.0e+06, b: 2.182, Ea: 2.506}
+  note: |-
+    Reaction index: Chemkin #24; RMG #163
+    Template reaction: H_Abstraction
+    Flux pairs: OH(17), H2O(5); CH4(2), CH3(10);
+    Matched reaction 188 CH4b + OH <=> CH3_p1 + H2O_p in H_Abstraction/training
+    This reaction matched rate rule [C_methane;O_pri_rad]
+    family: H_Abstraction
+- equation: CH3(10) + C2H5(13) <=> CH4(2) + C2H4(18)  # Reaction 25
+  rate-constant: {A: 6.57e+14, b: -0.68, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #25; RMG #164
+    Template reaction: Disproportionation
+    Flux pairs: CH3(10), CH4(2); C2H5(13), C2H4(18);
+    Matched reaction 5 CH3 + C2H5 <=> CH4 + C2H4 in Disproportionation/training
+    This reaction matched rate rule [C_methyl;Cmethyl_Csrad]
+    family: Disproportionation
+- equation: OH(17) + HCO(15) <=> H2O(5) + CO(7)  # Reaction 26
+  rate-constant: {A: 1.24e+23, b: -3.29, Ea: 2.355}
+  note: |-
+    Reaction index: Chemkin #26; RMG #285
+    Template reaction: CO_Disproportionation
+    Flux pairs: OH(17), H2O(5); HCO(15), CO(7);
+    Estimated using template [O_rad;HCO] for rate rule [O_pri_rad;HCO]
+    Euclidian distance = 1.0
+    family: CO_Disproportionation
+- equation: OH(17) + C2H6(8) <=> H2O(5) + C2H5(13)  # Reaction 27
+  rate-constant: {A: 1.61e+06, b: 2.224, Ea: 0.741}
+  note: |-
+    Reaction index: Chemkin #27; RMG #288
+    Template reaction: H_Abstraction
+    Flux pairs: C2H6(8), C2H5(13); OH(17), H2O(5);
+    Matched reaction 212 C2H6 + OH <=> C2H5b + H2O_p in H_Abstraction/training
+    This reaction matched rate rule [O_pri;C_rad/H2/Cs\H3]
+    family: H_Abstraction
+- equation: OH(17) + CH2O(9) <=> H2O(5) + HCO(15)  # Reaction 28
+  rate-constant: {A: 3.44e+09, b: 1.18, Ea: -0.45}
+  note: |-
+    Reaction index: Chemkin #28; RMG #290
+    Template reaction: H_Abstraction
+    Flux pairs: CH2O(9), HCO(15); OH(17), H2O(5);
+    Matched reaction 367 OH_p23 + CH2O <=> H2O + HCO_r3 in H_Abstraction/training
+    This reaction matched rate rule [O_pri;CO_pri_rad]
+    family: H_Abstraction
+- equation: OH(17) + C2H5(13) <=> H2O(5) + C2H4(18)  # Reaction 29
+  rate-constant: {A: 7.23e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #29; RMG #294
+    Template reaction: Disproportionation
+    Flux pairs: OH(17), H2O(5); C2H5(13), C2H4(18);
+    Matched reaction 13 HO + C2H5 <=> H2O + C2H4 in Disproportionation/training
+    This reaction matched rate rule [O_pri_rad;Cmethyl_Csrad]
+    family: Disproportionation
+- equation: H(12) + HCO(15) <=> H2(6) + CO(7)  # Reaction 30
+  rate-constant: {A: 9.03e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #30; RMG #296
+    Template reaction: CO_Disproportionation
+    Flux pairs: H(12), H2(6); HCO(15), CO(7);
+    Matched reaction 0 HCO + H <=> CO + H2 in CO_Disproportionation/training
+    This reaction matched rate rule [H_rad;HCO]
+    family: CO_Disproportionation
+- equation: H(12) + C2H6(8) <=> H2(6) + C2H5(13)  # Reaction 31
+  rate-constant: {A: 1.15e+08, b: 1.9, Ea: 7.53}
+  note: |-
+    Reaction index: Chemkin #31; RMG #299
+    Template reaction: H_Abstraction
+    Flux pairs: C2H6(8), C2H5(13); H(12), H2(6);
+    Matched reaction 210 C2H6 + H <=> C2H5b + H2_p in H_Abstraction/training
+    This reaction matched rate rule [H2;C_rad/H2/Cs\H3]
+    family: H_Abstraction
+- equation: H2(6) + HCO(15) <=> H(12) + CH2O(9)  # Reaction 32
+  rate-constant: {A: 1.8e+06, b: 2.0, Ea: 48.94}
+  note: |-
+    Reaction index: Chemkin #32; RMG #301
+    Template reaction: H_Abstraction
+    Flux pairs: HCO(15), CH2O(9); H2(6), H(12);
+    Matched reaction 309 H2 + HCO_r3 <=> CH2O + H in H_Abstraction/training
+    This reaction matched rate rule [H2;CO_pri_rad]
+    family: H_Abstraction
+- equation: H(12) + C2H5(13) <=> H2(6) + C2H4(18)  # Reaction 33
+  rate-constant: {A: 1.083e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #33; RMG #304
+    Template reaction: Disproportionation
+    Flux pairs: H(12), H2(6); C2H5(13), C2H4(18);
+    Matched reaction 4 H + C2H5 <=> H2 + C2H4 in Disproportionation/training
+    This reaction matched rate rule [H_rad;Cmethyl_Csrad]
+    family: Disproportionation
+- equation: HCO(15) + C2H5(13) <=> CO(7) + C2H6(8)  # Reaction 34
+  rate-constant: {A: 4.3e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #34; RMG #308
+    Template reaction: CO_Disproportionation
+    Flux pairs: C2H5(13), C2H6(8); HCO(15), CO(7);
+    Matched reaction 12 C2H5 + HCO <=> C2H6 + CO in CO_Disproportionation/training
+    This reaction matched rate rule [C_rad/H2/Cs;HCO]
+    family: CO_Disproportionation
+- equation: HCO(15) + HCO(15) <=> CO(7) + CH2O(9)  # Reaction 35
+  rate-constant: {A: 1.8e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #35; RMG #310
+    Template reaction: CO_Disproportionation
+    Flux pairs: HCO(15), CH2O(9); HCO(15), CO(7);
+    Matched reaction 5 HCO + HCO_Y <=> CO + CH2O in CO_Disproportionation/training
+    This reaction matched rate rule [CO_pri_rad;HCO]
+    family: CO_Disproportionation
+- equation: HCO(15) + C2H6(8) <=> CH2O(9) + C2H5(13)  # Reaction 36
+  rate-constant: {A: 4.692e+04, b: 2.72, Ea: 38.24}
+  note: |-
+    Reaction index: Chemkin #36; RMG #344
+    Template reaction: H_Abstraction
+    Flux pairs: HCO(15), CH2O(9); C2H6(8), C2H5(13);
+    Matched reaction 325 HCO_r3 + C2H6 <=> CH2O + C2H5 in H_Abstraction/training
+    This reaction matched rate rule [C/H3/Cs\H3;CO_pri_rad]
+    family: H_Abstraction
+- equation: C2H5(13) + C2H5(13) <=> C2H4(18) + C2H6(8)  # Reaction 37
+  rate-constant: {A: 6.9e+13, b: -0.35, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #37; RMG #347
+    Template reaction: Disproportionation
+    Flux pairs: C2H5(13), C2H6(8); C2H5(13), C2H4(18);
+    Matched reaction 6 C2H5 + C2H5-2 <=> C2H6 + C2H4 in Disproportionation/training
+    This reaction matched rate rule [C_rad/H2/Cs;Cmethyl_Csrad]
+    family: Disproportionation
+- equation: HCO(15) + C2H5(13) <=> CH2O(9) + C2H4(18)  # Reaction 38
+  rate-constant: {A: 5.972864e+14, b: -0.34, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #38; RMG #399
+    Template reaction: Disproportionation
+    Flux pairs: HCO(15), C2H4(18); C2H5(13), CH2O(9);
+    Estimated using average of templates [Y_rad;Cmethyl_Csrad] + [CO_pri_rad;XH_s_Rrad] for rate rule [CO_pri_rad;Cmethyl_Csrad]
+    Euclidian distance = 2.0
+    Multiplied by reaction path degeneracy 3.0
+    family: Disproportionation
+- equation: C2H4(62) <=> C2H4(18)  # Reaction 39
+  duplicate: true
+  rate-constant: {A: 1.843941e+15, b: -1.078, Ea: 13.587}
+  note: |-
+    Reaction index: Chemkin #39; RMG #116
+    Template reaction: Singlet_Carbene_Intra_Disproportionation
+    Flux pairs: C2H4(62), C2H4(18);
+    Estimated using template [CsJ2-C;singletcarbene;CH] for rate rule [CsJ2-C;CsJ2H;CH3]
+    Euclidian distance = 1.4142135623730951
+    Multiplied by reaction path degeneracy 3.0
+    family: Singlet_Carbene_Intra_Disproportionation
+- equation: C2H4(62) <=> C2H4(18)  # Reaction 40
+  duplicate: true
+  rate-constant: {A: 1.843941e+15, b: -1.078, Ea: 13.587}
+  note: |-
+    Reaction index: Chemkin #40; RMG #702
+    Template reaction: Singlet_Carbene_Intra_Disproportionation
+    Flux pairs: C2H4(62), C2H4(18);
+    Estimated using template [CsJ2-C;singletcarbene;CH] for rate rule [CsJ2-C;CsJ2H;CH3]
+    Euclidian distance = 1.4142135623730951
+    Multiplied by reaction path degeneracy 3.0
+    family: Singlet_Carbene_Intra_Disproportionation
+- equation: H2(6) + M <=> H(12) + H(12) + M  # Reaction 41
+  type: three-body
+  rate-constant: {A: 4.577e+19, b: -1.4, Ea: 104.38}
+  efficiencies: {H2O(5): 12.0, H2(6): 2.5, CO(7): 1.9, CO2(4): 3.8, Ar: 0.0}
+  note: |-
+    Reaction index: Chemkin #1; RMG #60
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: H2(6), H(12); H2(6), H(12);
+- equation: Ar + H2(6) <=> Ar + H(12) + H(12)  # Reaction 42
+  rate-constant: {A: 5.84e+18, b: -1.1, Ea: 104.38}
+  note: |-
+    Reaction index: Chemkin #2; RMG #61
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: H2(6), H(12); Ar, Ar; Ar, H(12);
+- equation: OH(17) + H2(6) <=> H(12) + H2O(5)  # Reaction 43
+  rate-constant: {A: 2.16e+08, b: 1.51, Ea: 3.43}
+  note: |-
+    Reaction index: Chemkin #3; RMG #58
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: OH(17), H2O(5); H2(6), H(12);
+- equation: H2O(5) + M <=> H(12) + OH(17) + M  # Reaction 44
+  type: three-body
+  rate-constant: {A: 6.064e+27, b: -3.322, Ea: 120.79}
+  efficiencies: {H2(6): 3.0, H2O(5): 0.0, CO(7): 1.9, CO2(4): 3.8, O2(3): 1.5,
+    N2: 2.0}
+  note: |-
+    Reaction index: Chemkin #4; RMG #67
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: H2O(5), H(12); H2O(5), OH(17);
+- equation: H2O(5) + H2O(5) <=> H(12) + OH(17) + H2O(5)  # Reaction 45
+  rate-constant: {A: 1.006e+26, b: -2.44, Ea: 120.18}
+  note: |-
+    Reaction index: Chemkin #5; RMG #68
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: H2O(5), H2O(5); H2O(5), H(12); H2O(5), OH(17);
+- equation: OH(17) + OH(17) <=> O2(3) + H2(6)  # Reaction 46
+  rate-constant: {A: 2.0e+11, b: 0.51, Ea: 50.5}
+  note: |-
+    Reaction index: Chemkin #6; RMG #82
+    Library reaction: BurkeH2O2inArHe
+    Flux pairs: OH(17), O2(3); OH(17), H2(6);
+- equation: H(12) + CH3(10) <=> CH4(2)  # Reaction 47
+  rate-constant: {A: 1.93e+14, b: 0.0, Ea: 0.27}
+  note: |-
+    Reaction index: Chemkin #7; RMG #87
+    Template reaction: R_Recombination
+    Flux pairs: CH3(10), CH4(2); H(12), CH4(2);
+    Matched reaction 57 H + CH3 <=> CH4 in R_Recombination/training
+    This reaction matched rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_N-2CNO->O]
+    family: R_Recombination
+- equation: CH3(10) + CH3(10) <=> C2H6(8)  # Reaction 48
+  rate-constant: {A: 9.45e+14, b: -0.538, Ea: 0.135}
+  note: |-
+    Reaction index: Chemkin #8; RMG #89
+    Template reaction: R_Recombination
+    Flux pairs: CH3(10), C2H6(8); CH3(10), C2H6(8);
+    Matched reaction 9 CH3 + CH3 <=> C2H6 in R_Recombination/training
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_N-1COS->O_1CS->C_N-1C-inRing]
+    family: R_Recombination
+- equation: H(12) + C2H5(13) <=> C2H6(8)  # Reaction 49
+  rate-constant: {A: 1.0e+14, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #9; RMG #90
+    Template reaction: R_Recombination
+    Flux pairs: C2H5(13), C2H6(8); H(12), C2H6(8);
+    Matched reaction 58 H + C2H5 <=> C2H6-2 in R_Recombination/training
+    This reaction matched rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_Ext-2CNO-R_N-Sp-3R!H=2CCNNOO_N-2CNO->O_3R!H->C_Sp-3C-2CN]
+    family: R_Recombination
+- equation: H2(6) + CO(7) <=> CH2O(9)  # Reaction 50
+  rate-constant: {A: 2.89e+09, b: 1.16, Ea: 82.1}
+  note: |-
+    Reaction index: Chemkin #10; RMG #91
+    Template reaction: 1,2_Insertion_CO
+    Flux pairs: CO(7), CH2O(9); H2(6), CH2O(9);
+    Matched reaction 2 H2 + CO <=> CH2O in 1,2_Insertion_CO/training
+    This reaction matched rate rule [CO;H2]
+    family: 1,2_Insertion_CO
+- equation: H(12) + HCO(15) <=> CH2O(9)  # Reaction 51
+  rate-constant: {A: 4.68e+10, b: 0.0, Ea: -4.53}
+  note: |-
+    Reaction index: Chemkin #11; RMG #92
+    Template reaction: R_Recombination
+    Flux pairs: HCO(15), CH2O(9); H(12), CH2O(9);
+    Matched reaction 63 H + CHO <=> CH2O in R_Recombination/training
+    This reaction matched rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_Ext-2CNO-R_Sp-3R!H=2CCNNOO_3R!H->O]
+    family: R_Recombination
+- equation: CH3(10) + C2H5(13) <=> C3H8(11)  # Reaction 52
+  rate-constant: {A: 1.23e+15, b: -0.562, Ea: 0.021}
+  note: |-
+    Reaction index: Chemkin #12; RMG #96
+    Template reaction: R_Recombination
+    Flux pairs: C2H5(13), C3H8(11); CH3(10), C3H8(11);
+    Matched reaction 10 CH3 + C2H5 <=> C3H8 in R_Recombination/training
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_N-1COS->O_1CS->C_N-1C-inRing_Ext-2R-R_Sp-3R!H-2R_3R!H->C_2R->C]
+    family: R_Recombination
+- equation: H(12) + C2H4(18) <=> C2H5(13)  # Reaction 53
+  rate-constant: {A: 4.62e+08, b: 1.64, Ea: 1.01}
+  note: |-
+    Reaction index: Chemkin #13; RMG #101
+    Template reaction: R_Addition_MultipleBond
+    Flux pairs: C2H4(18), C2H5(13); H(12), C2H5(13);
+    Matched reaction 2541 H + C2H4 <=> C2H5-2 in R_Addition_MultipleBond/training
+    This reaction matched rate rule [Cds-HH_Cds-HH;HJ]
+    family: R_Addition_MultipleBond
+- equation: OH(17) + CH3(10) <=> CH3OH(14)  # Reaction 54
+  rate-constant: {A: 6.03e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #14; RMG #104
+    Template reaction: R_Recombination
+    Flux pairs: OH(17), CH3OH(14); CH3(10), CH3OH(14);
+    Matched reaction 73 CH3 + OH <=> CH4O in R_Recombination/training
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_1COS->O_2R->C]
+    family: R_Recombination
+- equation: H(12) + CO(7) <=> HCO(15)  # Reaction 55
+  rate-constant: {A: 1.18e+11, b: 0.0, Ea: 2.72}
+  note: |-
+    Reaction index: Chemkin #15; RMG #108
+    Template reaction: R_Addition_COm
+    Flux pairs: CO(7), HCO(15); H(12), HCO(15);
+    Matched reaction 4 H + CO <=> CHO in R_Addition_COm/training
+    This reaction matched rate rule [COm;H_rad]
+    family: R_Addition_COm
+- equation: CO(7) + CH4(2) <=> CH3CHO(16)  # Reaction 56
+  rate-constant: {A: 6.56e+04, b: 2.86, Ea: 86.9}
+  note: |-
+    Reaction index: Chemkin #16; RMG #109
+    Template reaction: 1,2_Insertion_CO
+    Flux pairs: CO(7), CH3CHO(16); CH4(2), CH3CHO(16);
+    Matched reaction 3 CH4 + CO <=> C2H4O in 1,2_Insertion_CO/training
+    This reaction matched rate rule [CO;C_methane]
+    family: 1,2_Insertion_CO
+- equation: HCO(15) + CH3(10) <=> CH3CHO(16)  # Reaction 57
+  rate-constant: {A: 1.81e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #17; RMG #111
+    Template reaction: R_Recombination
+    Flux pairs: HCO(15), CH3CHO(16); CH3(10), CH3CHO(16);
+    Matched reaction 71 CH3 + CHO <=> C2H4O in R_Recombination/training
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_N-1COS->O_1CS->C_N-1C-inRing_Ext-2R-R_N-Sp-3R!H-2R_3R!H->O]
+    family: R_Recombination
+- equation: CH3OO(20) <=> O2(3) + CH3(10)  # Reaction 58
+  rate-constant: {A: 1.09e+14, b: 0.25, Ea: 33.3}
+  note: |-
+    Reaction index: Chemkin #18; RMG #119
+    Template reaction: R_Recombination
+    Flux pairs: CH3OO(20), CH3(10); CH3OO(20), O2(3);
+    Matched reaction 0 CH3O2 <=> O2 + CH3 in R_Recombination/training
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_1COS->O_Ext-1O-R_2R->C_3R!H->O]
+    family: R_Recombination
+- equation: CH3OO(20) <=> OH(17) + CH2O(9)  # Reaction 59
+  rate-constant: {A: 4.71e+08, b: 1.45, Ea: 42.27}
+  note: |-
+    Reaction index: Chemkin #19; RMG #121
+    Template reaction: intra_H_migration
+    Flux pairs: CH3OO(20), OH(17); CH3OO(20), CH2O(9);
+    From training reaction 240 used for R3H_SS_O;O_rad_out;Cs_H_out_2H
+    Exact match found for rate rule [R3H_SS_O;O_rad_out;Cs_H_out_2H]
+    Euclidian distance = 0
+    Multiplied by reaction path degeneracy 3.0
+    family: intra_H_migration
+- equation: HCO(15) + CH3(10) <=> CO(7) + CH4(2)  # Reaction 60
+  rate-constant: {A: 4.0e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #20; RMG #154
+    Template reaction: CO_Disproportionation
+    Flux pairs: CH3(10), CH4(2); HCO(15), CO(7);
+    Matched reaction 3 HCO + CH3 <=> CO + CH4 in CO_Disproportionation/training
+    This reaction matched rate rule [C_methyl;HCO]
+    family: CO_Disproportionation
+- equation: H(12) + CH4(2) <=> H2(6) + CH3(10)  # Reaction 61
+  rate-constant: {A: 4100.0, b: 3.156, Ea: 8.755}
+  note: |-
+    Reaction index: Chemkin #21; RMG #157
+    Template reaction: H_Abstraction
+    Flux pairs: H(12), H2(6); CH4(2), CH3(10);
+    Matched reaction 186 CH4b + H <=> CH3_p1 + H2_p in H_Abstraction/training
+    This reaction matched rate rule [C_methane;H_rad]
+    family: H_Abstraction
+- equation: CH3(10) + C2H6(8) <=> CH4(2) + C2H5(13)  # Reaction 62
+  rate-constant: {A: 35.0, b: 3.44, Ea: 10.384}
+  note: |-
+    Reaction index: Chemkin #22; RMG #158
+    Template reaction: H_Abstraction
+    Flux pairs: C2H6(8), C2H5(13); CH3(10), CH4(2);
+    Matched reaction 215 C2H6 + CH3_r3 <=> C2H5b + CH4 in H_Abstraction/training
+    This reaction matched rate rule [C_methane;C_rad/H2/Cs\H3]
+    family: H_Abstraction
+- equation: HCO(15) + CH4(2) <=> CH2O(9) + CH3(10)  # Reaction 63
+  rate-constant: {A: 7280.0, b: 2.85, Ea: 34.25}
+  note: |-
+    Reaction index: Chemkin #23; RMG #160
+    Template reaction: H_Abstraction
+    Flux pairs: HCO(15), CH2O(9); CH4(2), CH3(10);
+    Matched reaction 318 HCO_r3 + CH4b <=> CH2O + CH3_p1 in H_Abstraction/training
+    This reaction matched rate rule [C_methane;CO_pri_rad]
+    family: H_Abstraction
+- equation: OH(17) + CH4(2) <=> H2O(5) + CH3(10)  # Reaction 64
+  rate-constant: {A: 1.0e+06, b: 2.182, Ea: 2.506}
+  note: |-
+    Reaction index: Chemkin #24; RMG #163
+    Template reaction: H_Abstraction
+    Flux pairs: OH(17), H2O(5); CH4(2), CH3(10);
+    Matched reaction 188 CH4b + OH <=> CH3_p1 + H2O_p in H_Abstraction/training
+    This reaction matched rate rule [C_methane;O_pri_rad]
+    family: H_Abstraction
+- equation: CH3(10) + C2H5(13) <=> CH4(2) + C2H4(18)  # Reaction 65
+  rate-constant: {A: 6.57e+14, b: -0.68, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #25; RMG #164
+    Template reaction: Disproportionation
+    Flux pairs: CH3(10), CH4(2); C2H5(13), C2H4(18);
+    Matched reaction 5 CH3 + C2H5 <=> CH4 + C2H4 in Disproportionation/training
+    This reaction matched rate rule [C_methyl;Cmethyl_Csrad]
+    family: Disproportionation
+- equation: OH(17) + HCO(15) <=> H2O(5) + CO(7)  # Reaction 66
+  rate-constant: {A: 1.24e+23, b: -3.29, Ea: 2.355}
+  note: |-
+    Reaction index: Chemkin #26; RMG #285
+    Template reaction: CO_Disproportionation
+    Flux pairs: OH(17), H2O(5); HCO(15), CO(7);
+    Estimated using template [O_rad;HCO] for rate rule [O_pri_rad;HCO]
+    Euclidian distance = 1.0
+    family: CO_Disproportionation
+- equation: OH(17) + C2H6(8) <=> H2O(5) + C2H5(13)  # Reaction 67
+  rate-constant: {A: 1.61e+06, b: 2.224, Ea: 0.741}
+  note: |-
+    Reaction index: Chemkin #27; RMG #288
+    Template reaction: H_Abstraction
+    Flux pairs: C2H6(8), C2H5(13); OH(17), H2O(5);
+    Matched reaction 212 C2H6 + OH <=> C2H5b + H2O_p in H_Abstraction/training
+    This reaction matched rate rule [O_pri;C_rad/H2/Cs\H3]
+    family: H_Abstraction
+- equation: OH(17) + CH2O(9) <=> H2O(5) + HCO(15)  # Reaction 68
+  rate-constant: {A: 3.44e+09, b: 1.18, Ea: -0.45}
+  note: |-
+    Reaction index: Chemkin #28; RMG #290
+    Template reaction: H_Abstraction
+    Flux pairs: CH2O(9), HCO(15); OH(17), H2O(5);
+    Matched reaction 367 OH_p23 + CH2O <=> H2O + HCO_r3 in H_Abstraction/training
+    This reaction matched rate rule [O_pri;CO_pri_rad]
+    family: H_Abstraction
+- equation: OH(17) + C2H5(13) <=> H2O(5) + C2H4(18)  # Reaction 69
+  rate-constant: {A: 7.23e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #29; RMG #294
+    Template reaction: Disproportionation
+    Flux pairs: OH(17), H2O(5); C2H5(13), C2H4(18);
+    Matched reaction 13 HO + C2H5 <=> H2O + C2H4 in Disproportionation/training
+    This reaction matched rate rule [O_pri_rad;Cmethyl_Csrad]
+    family: Disproportionation
+- equation: H(12) + HCO(15) <=> H2(6) + CO(7)  # Reaction 70
+  rate-constant: {A: 9.03e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #30; RMG #296
+    Template reaction: CO_Disproportionation
+    Flux pairs: H(12), H2(6); HCO(15), CO(7);
+    Matched reaction 0 HCO + H <=> CO + H2 in CO_Disproportionation/training
+    This reaction matched rate rule [H_rad;HCO]
+    family: CO_Disproportionation
+- equation: H(12) + C2H6(8) <=> H2(6) + C2H5(13)  # Reaction 71
+  rate-constant: {A: 1.15e+08, b: 1.9, Ea: 7.53}
+  note: |-
+    Reaction index: Chemkin #31; RMG #299
+    Template reaction: H_Abstraction
+    Flux pairs: C2H6(8), C2H5(13); H(12), H2(6);
+    Matched reaction 210 C2H6 + H <=> C2H5b + H2_p in H_Abstraction/training
+    This reaction matched rate rule [H2;C_rad/H2/Cs\H3]
+    family: H_Abstraction
+- equation: H2(6) + HCO(15) <=> H(12) + CH2O(9)  # Reaction 72
+  rate-constant: {A: 1.8e+06, b: 2.0, Ea: 48.94}
+  note: |-
+    Reaction index: Chemkin #32; RMG #301
+    Template reaction: H_Abstraction
+    Flux pairs: HCO(15), CH2O(9); H2(6), H(12);
+    Matched reaction 309 H2 + HCO_r3 <=> CH2O + H in H_Abstraction/training
+    This reaction matched rate rule [H2;CO_pri_rad]
+    family: H_Abstraction
+- equation: H(12) + C2H5(13) <=> H2(6) + C2H4(18)  # Reaction 73
+  rate-constant: {A: 1.083e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #33; RMG #304
+    Template reaction: Disproportionation
+    Flux pairs: H(12), H2(6); C2H5(13), C2H4(18);
+    Matched reaction 4 H + C2H5 <=> H2 + C2H4 in Disproportionation/training
+    This reaction matched rate rule [H_rad;Cmethyl_Csrad]
+    family: Disproportionation
+- equation: HCO(15) + C2H5(13) <=> CO(7) + C2H6(8)  # Reaction 74
+  rate-constant: {A: 4.3e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #34; RMG #308
+    Template reaction: CO_Disproportionation
+    Flux pairs: C2H5(13), C2H6(8); HCO(15), CO(7);
+    Matched reaction 12 C2H5 + HCO <=> C2H6 + CO in CO_Disproportionation/training
+    This reaction matched rate rule [C_rad/H2/Cs;HCO]
+    family: CO_Disproportionation
+- equation: HCO(15) + HCO(15) <=> CO(7) + CH2O(9)  # Reaction 75
+  rate-constant: {A: 1.8e+13, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #35; RMG #310
+    Template reaction: CO_Disproportionation
+    Flux pairs: HCO(15), CH2O(9); HCO(15), CO(7);
+    Matched reaction 5 HCO + HCO_Y <=> CO + CH2O in CO_Disproportionation/training
+    This reaction matched rate rule [CO_pri_rad;HCO]
+    family: CO_Disproportionation
+- equation: HCO(15) + C2H6(8) <=> CH2O(9) + C2H5(13)  # Reaction 76
+  rate-constant: {A: 4.692e+04, b: 2.72, Ea: 38.24}
+  note: |-
+    Reaction index: Chemkin #36; RMG #344
+    Template reaction: H_Abstraction
+    Flux pairs: HCO(15), CH2O(9); C2H6(8), C2H5(13);
+    Matched reaction 325 HCO_r3 + C2H6 <=> CH2O + C2H5 in H_Abstraction/training
+    This reaction matched rate rule [C/H3/Cs\H3;CO_pri_rad]
+    family: H_Abstraction
+- equation: C2H5(13) + C2H5(13) <=> C2H4(18) + C2H6(8)  # Reaction 77
+  rate-constant: {A: 6.9e+13, b: -0.35, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #37; RMG #347
+    Template reaction: Disproportionation
+    Flux pairs: C2H5(13), C2H6(8); C2H5(13), C2H4(18);
+    Matched reaction 6 C2H5 + C2H5-2 <=> C2H6 + C2H4 in Disproportionation/training
+    This reaction matched rate rule [C_rad/H2/Cs;Cmethyl_Csrad]
+    family: Disproportionation
+- equation: HCO(15) + C2H5(13) <=> CH2O(9) + C2H4(18)  # Reaction 78
+  rate-constant: {A: 5.972864e+14, b: -0.34, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #38; RMG #399
+    Template reaction: Disproportionation
+    Flux pairs: HCO(15), C2H4(18); C2H5(13), CH2O(9);
+    Estimated using average of templates [Y_rad;Cmethyl_Csrad] + [CO_pri_rad;XH_s_Rrad] for rate rule [CO_pri_rad;Cmethyl_Csrad]
+    Euclidian distance = 2.0
+    Multiplied by reaction path degeneracy 3.0
+    family: Disproportionation
+- equation: C2H4(62) <=> C2H4(18)  # Reaction 79
+  duplicate: true
+  rate-constant: {A: 1.843941e+15, b: -1.078, Ea: 13.587}
+  note: |-
+    Reaction index: Chemkin #39; RMG #116
+    Template reaction: Singlet_Carbene_Intra_Disproportionation
+    Flux pairs: C2H4(62), C2H4(18);
+    Estimated using template [CsJ2-C;singletcarbene;CH] for rate rule [CsJ2-C;CsJ2H;CH3]
+    Euclidian distance = 1.4142135623730951
+    Multiplied by reaction path degeneracy 3.0
+    family: Singlet_Carbene_Intra_Disproportionation
+- equation: C2H4(62) <=> C2H4(18)  # Reaction 80
+  duplicate: true
+  rate-constant: {A: 1.843941e+15, b: -1.078, Ea: 13.587}
+  note: |-
+    Reaction index: Chemkin #40; RMG #702
+    Template reaction: Singlet_Carbene_Intra_Disproportionation
+    Flux pairs: C2H4(62), C2H4(18);
+    Estimated using template [CsJ2-C;singletcarbene;CH] for rate rule [CsJ2-C;CsJ2H;CH3]
+    Euclidian distance = 1.4142135623730951
+    Multiplied by reaction path degeneracy 3.0
+    family: Singlet_Carbene_Intra_Disproportionation
+
+surface1-reactions:
+- equation: X(1) + X(1) + H2(6) <=> HX(21) + HX(21)  # Reaction 1
+  sticking-coefficient: {A: 0.046, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #1; RMG #1
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: H2(6), HX(21); X(1), HX(21); X(1), HX(21);
+- equation: X(1) + H(12) <=> HX(21)  # Reaction 2
+  sticking-coefficient: {A: 0.384, b: 1.832, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #2; RMG #22
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: X(1), HX(21); H(12), HX(21);
+- equation: X(1) + CO2(4) <=> CO2X(22)  # Reaction 3
+  sticking-coefficient: {A: 5.0e-03, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #3; RMG #7
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: X(1), CO2X(22); CO2(4), CO2X(22);
+- equation: X(1) + CO(7) <=> COX(23)  # Reaction 4
+  sticking-coefficient: {A: 0.84, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #4; RMG #8
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: X(1), COX(23); CO(7), COX(23);
+- equation: X(1) + X(1) + O2(3) <=> OX(25) + OX(25)  # Reaction 5
+  rate-constant: {A: 1.89e+21, b: -0.5, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #5; RMG #2
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: O2(3), OX(25); X(1), OX(25); X(1), OX(25);
+- equation: OX(25) + COX(23) <=> X(1) + CO2X(22)  # Reaction 6
+  rate-constant: {A: 3.7e+21, b: 0.0, Ea: 28.107}
+  note: |-
+    Reaction index: Chemkin #6; RMG #10
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: COX(23), CO2X(22); OX(25), X(1);
+- equation: X(1) + X(1) + CH4(2) <=> HX(21) + CH3X(27)  # Reaction 7
+  sticking-coefficient: {A: 9.0e-04, b: 0.0, Ea: 17.208}
+  note: |-
+    Reaction index: Chemkin #7; RMG #3
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: CH4(2), CH3X(27); X(1), HX(21); X(1), HX(21);
+- equation: HX(21) + CH2X(26) <=> X(1) + CH3X(27)  # Reaction 8
+  rate-constant: {A: 3.09e+22, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #8; RMG #12
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: CH2X(26), CH3X(27); HX(21), X(1);
+- equation: X(1) + CH3(10) <=> CH3X(27)  # Reaction 9
+  sticking-coefficient: {A: 0.16, b: -0.099, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #9; RMG #35
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: X(1), CH3X(27); CH3(10), CH3X(27);
+- equation: HX(21) + CHX(28) <=> X(1) + CH2X(26)  # Reaction 10
+  rate-constant: {A: 3.09e+22, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #10; RMG #13
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: CHX(28), CH2X(26); HX(21), X(1);
+- equation: HX(21) + COX(23) <=> OX(25) + CHX(28)  # Reaction 11
+  rate-constant: {A: 1.26e+20, b: 0.073, Ea: 45.8}
+  note: |-
+    Reaction index: Chemkin #11; RMG #42
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: COX(23), CHX(28); HX(21), OX(25);
+- equation: OX(25) + CX(29) <=> X(1) + COX(23)  # Reaction 12
+  rate-constant: {A: 3.7e+19, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #12; RMG #9
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: CX(29), COX(23); OX(25), X(1);
+- equation: X(1) + CHX(28) <=> HX(21) + CX(29)  # Reaction 13
+  rate-constant: {A: 3.09e+22, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #13; RMG #14
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: CHX(28), CX(29); X(1), HX(21);
+- equation: H2(6) + CX(29) <=> CH2X(26)  # Reaction 14
+  sticking-coefficient: {A: 0.04, b: 0.0, Ea: 7.098}
+  note: |-
+    Reaction index: Chemkin #14; RMG #17
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: H2(6), CH2X(26); CX(29), CH2X(26);
+- equation: COX(23) + COX(23) <=> CX(29) + CO2X(22)  # Reaction 15
+  rate-constant: {A: 2.39e+20, b: 0.393, Ea: 48.8}
+  note: |-
+    Reaction index: Chemkin #15; RMG #44
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: COX(23), CO2X(22); COX(23), CX(29);
+- equation: X(1) + OX(25) + CH4(2) <=> OHX(31) + CH3X(27)  # Reaction 16
+  rate-constant: {A: 5.0e+18, b: 0.7, Ea: 10.038}
+  note: |-
+    Reaction index: Chemkin #16; RMG #4
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: CH4(2), CH3X(27); X(1), OHX(31); OX(25), OHX(31);
+- equation: HX(21) + CO2X(22) <=> OHX(31) + COX(23)  # Reaction 17
+  rate-constant: {A: 1.0e+19, b: 0.0, Ea: 2.008}
+  note: |-
+    Reaction index: Chemkin #17; RMG #11
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: CO2X(22), COX(23); HX(21), OHX(31);
+- equation: OX(25) + HX(21) <=> X(1) + OHX(31)  # Reaction 18
+  rate-constant: {A: 1.28e+21, b: 0.0, Ea: 2.677}
+  note: |-
+    Reaction index: Chemkin #18; RMG #15
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: OX(25), OHX(31); HX(21), X(1);
+- equation: X(1) + OH(17) <=> OHX(31)  # Reaction 19
+  sticking-coefficient: {A: 0.999, b: 2.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #19; RMG #21
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: X(1), OHX(31); OH(17), OHX(31);
+- equation: OX(25) + CH3X(27) <=> OHX(31) + CH2X(26)  # Reaction 20
+  rate-constant: {A: 7.93e+19, b: -0.23, Ea: 10.8}
+  note: |-
+    Reaction index: Chemkin #20; RMG #36
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: CH3X(27), CH2X(26); OX(25), OHX(31);
+- equation: OHX(31) + CHX(28) <=> OX(25) + CH2X(26)  # Reaction 21
+  rate-constant: {A: 4.43e+19, b: 0.414, Ea: 44.7}
+  note: |-
+    Reaction index: Chemkin #21; RMG #37
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: CHX(28), CH2X(26); OHX(31), OX(25);
+- equation: OHX(31) + CX(29) <=> OX(25) + CHX(28)  # Reaction 22
+  rate-constant: {A: 2.57e+19, b: 0.225, Ea: 27.7}
+  note: |-
+    Reaction index: Chemkin #22; RMG #38
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: CX(29), CHX(28); OHX(31), OX(25);
+- equation: HX(21) + COX(23) <=> OHX(31) + CX(29)  # Reaction 23
+  rate-constant: {A: 2.0e+20, b: -0.168, Ea: 40.7}
+  note: |-
+    Reaction index: Chemkin #23; RMG #43
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: COX(23), CX(29); HX(21), OHX(31);
+- equation: X(1) + OHX(31) + CH4(2) <=> H2OX(32) + CH3X(27)  # Reaction 24
+  sticking-coefficient: {A: 1.0, b: 0.0, Ea: 2.39}
+  note: |-
+    Reaction index: Chemkin #24; RMG #5
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: CH4(2), CH3X(27); X(1), H2OX(32); OHX(31), H2OX(32);
+- equation: X(1) + H2O(5) <=> H2OX(32)  # Reaction 25
+  sticking-coefficient: {A: 0.75, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #25; RMG #6
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: X(1), H2OX(32); H2O(5), H2OX(32);
+- equation: OX(25) + H2OX(32) <=> OHX(31) + OHX(31)  # Reaction 26
+  rate-constant: {A: 1.0e+20, b: 0.0, Ea: 10.301}
+  note: |-
+    Reaction index: Chemkin #26; RMG #16
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: H2OX(32), OHX(31); OX(25), OHX(31);
+- equation: HX(21) + OHX(31) <=> X(1) + H2OX(32)  # Reaction 27
+  rate-constant: {A: 2.04e+21, b: 0.0, Ea: 15.827}
+  note: |-
+    Reaction index: Chemkin #27; RMG #18
+    Library reaction: Surface/Methane/Deutschmann_Pt
+    Flux pairs: OHX(31), H2OX(32); HX(21), X(1);
+- equation: H2OX(32) + CH2X(26) <=> OHX(31) + CH3X(27)  # Reaction 28
+  rate-constant: {A: 3.3e+19, b: 0.099, Ea: 14.1}
+  note: |-
+    Reaction index: Chemkin #28; RMG #39
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: CH2X(26), CH3X(27); H2OX(32), OHX(31);
+- equation: H2OX(32) + CHX(28) <=> OHX(31) + CH2X(26)  # Reaction 29
+  rate-constant: {A: 7.29e+19, b: 0.269, Ea: 34.0}
+  note: |-
+    Reaction index: Chemkin #29; RMG #40
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: CHX(28), CH2X(26); H2OX(32), OHX(31);
+- equation: H2OX(32) + CX(29) <=> OHX(31) + CHX(28)  # Reaction 30
+  rate-constant: {A: 4.19e+19, b: 0.09, Ea: 15.6}
+  note: |-
+    Reaction index: Chemkin #30; RMG #41
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: CX(29), CHX(28); H2OX(32), OHX(31);
+- equation: X(1) + HCO(15) <=> CHOX(33)  # Reaction 31
+  sticking-coefficient: {A: 0.0114, b: 0.096, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #31; RMG #48
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: X(1), CHOX(33); HCO(15), CHOX(33);
+- equation: X(1) + CHOX(33) <=> HX(21) + COX(23)  # Reaction 32
+  rate-constant: {A: 2.86e+19, b: 0.33, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #32; RMG #53
+    Library reaction: Surface/Methane/Vlachos_Pt111
+    Flux pairs: CHOX(33), COX(23); X(1), HX(21);
+- equation: X(1) + CH4(2) <=> CH4X(24)  # Reaction 33
+  sticking-coefficient: {A: 8.0e-03, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #33; RMG #122
+    Template reaction: Surface_Adsorption_vdW
+    Flux pairs: CH4(2), CH4X(24); X(1), CH4X(24);
+    Matched reaction 11 CH4 + X <=> CH4X in Surface_Adsorption_vdW/training
+    This reaction matched rate rule [Adsorbate;VacantSite]
+    family: Surface_Adsorption_vdW
+    metal: Ni
+- equation: X(1) + H2(6) <=> H2X(30)  # Reaction 34
+  sticking-coefficient: {A: 8.0e-03, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #34; RMG #123
+    Template reaction: Surface_Adsorption_vdW
+    Flux pairs: H2(6), H2X(30); X(1), H2X(30);
+    Estimated using template [Adsorbate;VacantSite] for rate rule [H2;VacantSite]
+    Euclidian distance = 2.0
+    family: Surface_Adsorption_vdW
+- equation: X(1) + X(1) + CO2(4) <=> OX(25) + COX(23)  # Reaction 35
+  sticking-coefficient: {A: 0.02, b: 0.0, Ea: 10.0}
+  note: |-
+    Reaction index: Chemkin #35; RMG #124
+    Template reaction: Surface_Adsorption_Dissociative_Double
+    Flux pairs: CO2(4), COX(23); X(1), OX(25); X(1), OX(25);
+    Estimated using template [Adsorbate;VacantSite1;VacantSite2] for rate rule [CO2;VacantSite1;VacantSite2]
+    Euclidian distance = 2.0
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Adsorption_Dissociative_Double
+- equation: X(1) + X(1) + H2O(5) <=> HX(21) + OHX(31)  # Reaction 36
+  sticking-coefficient: {A: 0.03, b: 0.0, Ea: 14.803}
+  note: |-
+    Reaction index: Chemkin #36; RMG #125
+    Template reaction: Surface_Adsorption_Dissociative
+    Flux pairs: H2O(5), OHX(31); X(1), HX(21); X(1), HX(21);
+    Estimated using template [Adsorbate;VacantSite1;VacantSite2] for rate rule [H2O;VacantSite1;VacantSite2]
+    Euclidian distance = 3.0
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Adsorption_Dissociative
+    Ea raised from 59.0 to 61.9 kJ/mol to match endothermicity of reaction.
+- equation: X(1) + X(1) + C2H6(8) <=> CH3X(27) + CH3X(27)  # Reaction 37
+  sticking-coefficient: {A: 0.015, b: 0.0, Ea: 1.195}
+  note: |-
+    Reaction index: Chemkin #37; RMG #126
+    Template reaction: Surface_Adsorption_Dissociative
+    Flux pairs: C2H6(8), CH3X(27); X(1), CH3X(27); X(1), CH3X(27);
+    Estimated using an average for rate rule [Adsorbate;VacantSite1;VacantSite2]
+    Euclidian distance = 0
+    family: Surface_Adsorption_Dissociative
+- equation: X(1) + X(1) + CH2O(9) <=> HX(21) + CHOX(33)  # Reaction 38
+  sticking-coefficient: {A: 0.03, b: 0.0, Ea: 1.195}
+  note: |-
+    Reaction index: Chemkin #38; RMG #129
+    Template reaction: Surface_Adsorption_Dissociative
+    Flux pairs: CH2O(9), CHOX(33); X(1), HX(21); X(1), HX(21);
+    Estimated using template [Adsorbate;VacantSite1;VacantSite2] for rate rule [C-H;VacantSite1;VacantSite2]
+    Euclidian distance = 1.0
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Adsorption_Dissociative
+- equation: X(1) + X(1) + CH2O(9) <=> OX(25) + CH2X(26)  # Reaction 39
+  sticking-coefficient: {A: 0.01, b: 0.0, Ea: 10.0}
+  note: |-
+    Reaction index: Chemkin #39; RMG #130
+    Template reaction: Surface_Adsorption_Dissociative_Double
+    Flux pairs: CH2O(9), CH2X(26); X(1), OX(25); X(1), OX(25);
+    Estimated using template [Adsorbate;VacantSite1;VacantSite2] for rate rule [OC;VacantSite1;VacantSite2]
+    Euclidian distance = 1.0
+    family: Surface_Adsorption_Dissociative_Double
+- equation: X(1) + X(1) + CH3OH(14) <=> OHX(31) + CH3X(27)  # Reaction 40
+  sticking-coefficient: {A: 0.015, b: 0.0, Ea: 1.195}
+  note: |-
+    Reaction index: Chemkin #40; RMG #136
+    Template reaction: Surface_Adsorption_Dissociative
+    Flux pairs: CH3OH(14), CH3X(27); X(1), OHX(31); X(1), OHX(31);
+    Estimated using template [Adsorbate;VacantSite1;VacantSite2] for rate rule [O-C;VacantSite1;VacantSite2]
+    Euclidian distance = 2.0
+    family: Surface_Adsorption_Dissociative
+- equation: X(1) + X(1) + CH3CHO(16) <=> CHOX(33) + CH3X(27)  # Reaction 41
+  sticking-coefficient: {A: 0.015, b: 0.0, Ea: 1.195}
+  note: |-
+    Reaction index: Chemkin #41; RMG #139
+    Template reaction: Surface_Adsorption_Dissociative
+    Flux pairs: CH3CHO(16), CHOX(33); X(1), CH3X(27); X(1), CH3X(27);
+    Estimated using an average for rate rule [Adsorbate;VacantSite1;VacantSite2]
+    Euclidian distance = 0
+    family: Surface_Adsorption_Dissociative
+- equation: X(1) + X(1) + C2H4(18) <=> CH2X(26) + CH2X(26)  # Reaction 42
+  sticking-coefficient: {A: 0.01, b: 0.0, Ea: 10.0}
+  note: |-
+    Reaction index: Chemkin #42; RMG #145
+    Template reaction: Surface_Adsorption_Dissociative_Double
+    Flux pairs: C2H4(18), CH2X(26); X(1), CH2X(26); X(1), CH2X(26);
+    Estimated using template [Adsorbate;VacantSite1;VacantSite2] for rate rule [CC;VacantSite1;VacantSite2]
+    Euclidian distance = 1.0
+    family: Surface_Adsorption_Dissociative_Double
+- equation: X(1) + CH4X(24) <=> HX(21) + CH3X(27)  # Reaction 43
+  rate-constant: {A: 1.54e+21, b: 0.087, Ea: 13.337}
+  note: |-
+    Reaction index: Chemkin #43; RMG #148
+    Template reaction: Surface_Dissociation_vdW
+    Flux pairs: CH4X(24), CH3X(27); CH4X(24), HX(21);
+    Matched reaction 12 CH4* + X_4 <=> CH3* + H* in Surface_Dissociation_vdW/training
+    This reaction matched rate rule [Root_N-1R!H->N_1BrCClFIOPSSi->C]
+    family: Surface_Dissociation_vdW
+    metal: Ni
+- equation: H2X(30) + CH3X(27) <=> HX(21) + CH4X(24)  # Reaction 44
+  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #44; RMG #593
+    Template reaction: Surface_Abstraction_Single_vdW
+    Flux pairs: CH3X(27), CH4X(24); H2X(30), HX(21);
+    Estimated using template [Donating;Abstracting] for rate rule [H-H;*C-3R]
+    Euclidian distance = 2.23606797749979
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Abstraction_Single_vdW
+    Ea raised from -29.7 to 0.0 kJ/mol.
+- equation: H2X(30) + CHX(28) <=> HX(21) + CH2X(26)  # Reaction 45
+  rate-constant: {A: 2.073936e+17, b: 0.937, Ea: 29.088}
+  note: |-
+    Reaction index: Chemkin #45; RMG #594
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: CHX(28), CH2X(26); H2X(30), HX(21);
+    Estimated using template [AdsorbateVdW;*C] for rate rule [H-H;*#CH]
+    Euclidian distance = 2.23606797749979
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Abstraction_vdW
+- equation: H2X(30) + CH2X(26) <=> HX(21) + CH3X(27)  # Reaction 46
+  rate-constant: {A: 2.073936e+17, b: 0.937, Ea: 29.088}
+  note: |-
+    Reaction index: Chemkin #46; RMG #595
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: CH2X(26), CH3X(27); H2X(30), HX(21);
+    Estimated using template [AdsorbateVdW;*=C] for rate rule [H-H;*=C-2R]
+    Euclidian distance = 1.4142135623730951
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Abstraction_vdW
+- equation: H2X(30) + CX(29) <=> HX(21) + CHX(28)  # Reaction 47
+  rate-constant: {A: 2.073936e+17, b: 0.937, Ea: 29.088}
+  note: |-
+    Reaction index: Chemkin #47; RMG #596
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: CX(29), CHX(28); H2X(30), HX(21);
+    Estimated using template [AdsorbateVdW;*C] for rate rule [H-H;*$C]
+    Euclidian distance = 1.4142135623730951
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Abstraction_vdW
+- equation: OX(25) + H2X(30) <=> HX(21) + OHX(31)  # Reaction 48
+  rate-constant: {A: 4.782614e+24, b: -0.188, Ea: 37.177}
+  note: |-
+    Reaction index: Chemkin #48; RMG #597
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: OX(25), OHX(31); H2X(30), HX(21);
+    Estimated using template [AdsorbateVdW;*=O] for rate rule [H-H;*=O]
+    Euclidian distance = 1.0
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Abstraction_vdW
+- equation: OHX(31) + H2X(30) <=> HX(21) + H2OX(32)  # Reaction 49
+  rate-constant: {A: 2.0e+17, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #49; RMG #598
+    Template reaction: Surface_Abstraction_Single_vdW
+    Flux pairs: OHX(31), H2OX(32); H2X(30), HX(21);
+    Estimated using template [Donating;Abstracting] for rate rule [H-H;*O-H]
+    Euclidian distance = 2.23606797749979
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Abstraction_Single_vdW
+    Ea raised from -64.3 to 0.0 kJ/mol.
+- equation: H2X(30) + COX(23) <=> HX(21) + CHOX(33)  # Reaction 50
+  rate-constant: {A: 2.073936e+17, b: 0.937, Ea: 29.088}
+  note: |-
+    Reaction index: Chemkin #50; RMG #599
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: COX(23), CHOX(33); H2X(30), HX(21);
+    Estimated using template [AdsorbateVdW;*=C=R] for rate rule [H-H;*=C=R]
+    Euclidian distance = 1.0
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Abstraction_vdW
+- equation: COX(23) + CH4X(24) <=> CHOX(33) + CH3X(27)  # Reaction 51
+  rate-constant: {A: 4.147872e+17, b: 0.937, Ea: 29.088}
+  note: |-
+    Reaction index: Chemkin #51; RMG #627
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: COX(23), CHOX(33); CH4X(24), CH3X(27);
+    Estimated using template [AdsorbateVdW;*=C=R] for rate rule [C-R;*=C=R]
+    Euclidian distance = 1.0
+    Multiplied by reaction path degeneracy 4.0
+    family: Surface_Abstraction_vdW
+- equation: CHX(28) + CHOX(33) <=> COX(23) + CH2X(26)  # Reaction 52
+  rate-constant: {A: 1.204624e+22, b: 0.051, Ea: 5.067}
+  note: |-
+    Reaction index: Chemkin #52; RMG #629
+    Template reaction: Surface_Abstraction
+    Flux pairs: CHX(28), CH2X(26); CHOX(33), COX(23);
+    Estimated using average of templates [Abstracting;*-C-H] + [C#*;*R-H] for rate rule [C#*;*-C-H]
+    Euclidian distance = 2.0
+    family: Surface_Abstraction
+- equation: CHOX(33) + CH2X(26) <=> COX(23) + CH3X(27)  # Reaction 53
+  rate-constant: {A: 2.141079e+21, b: 0.051, Ea: 2.271}
+  note: |-
+    Reaction index: Chemkin #53; RMG #632
+    Template reaction: Surface_Abstraction
+    Flux pairs: CH2X(26), CH3X(27); CHOX(33), COX(23);
+    Estimated using average of templates [Abstracting;*-C-H] + [C=*;*R-H] for rate rule [C=*;*-C-H]
+    Euclidian distance = 2.0
+    family: Surface_Abstraction
+- equation: CX(29) + CHOX(33) <=> COX(23) + CHX(28)  # Reaction 54
+  rate-constant: {A: 2.830926e+21, b: -0.156, Ea: 14.209}
+  note: |-
+    Reaction index: Chemkin #54; RMG #635
+    Template reaction: Surface_Abstraction
+    Flux pairs: CX(29), CHX(28); CHOX(33), COX(23);
+    Estimated using average of templates [Abstracting;*-C-H] + [C$*;*R-H] for rate rule [C$*;*-C-H]
+    Euclidian distance = 2.0
+    family: Surface_Abstraction
+- equation: OX(25) + CHOX(33) <=> OHX(31) + COX(23)  # Reaction 55
+  rate-constant: {A: 3.298e+21, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #55; RMG #636
+    Template reaction: Surface_Abstraction
+    Flux pairs: OX(25), OHX(31); CHOX(33), COX(23);
+    Matched reaction 39 O* + HCO* <=> OH* + CO* in Surface_Abstraction/training
+    This reaction matched rate rule [C=*;*OH]
+    family: Surface_Abstraction
+    metal: Cu
+- equation: OHX(31) + CHOX(33) <=> H2OX(32) + COX(23)  # Reaction 56
+  rate-constant: {A: 3.261e+21, b: 0.0, Ea: 6.918}
+  note: |-
+    Reaction index: Chemkin #56; RMG #638
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: CHOX(33), COX(23); OHX(31), H2OX(32);
+    Matched reaction 40 OH_2* + HCO* <=> H2O* + CO* in Surface_Abstraction_vdW/training
+    This reaction matched rate rule [O-R;*=C=R]
+    family: Surface_Abstraction_vdW
+    metal: Cu
+- equation: OX(25) + CH4X(24) <=> OHX(31) + CH3X(27)  # Reaction 57
+  rate-constant: {A: 5.62e+24, b: -0.101, Ea: 22.156}
+  note: |-
+    Reaction index: Chemkin #57; RMG #641
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: CH4X(24), CH3X(27); OX(25), OHX(31);
+    Matched reaction 21 CH4* + O* <=> CH3* + OH_4* in Surface_Abstraction_vdW/training
+    This reaction matched rate rule [C-R;*=O]
+    family: Surface_Abstraction_vdW
+    metal: Ni
+- equation: CH2X(26) + CH4X(24) <=> CH3X(27) + CH3X(27)  # Reaction 58
+  rate-constant: {A: 4.147872e+17, b: 0.937, Ea: 29.088}
+  note: |-
+    Reaction index: Chemkin #58; RMG #643
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: CH4X(24), CH3X(27); CH2X(26), CH3X(27);
+    Estimated using template [AdsorbateVdW;*=C] for rate rule [C-R;*=C-2R]
+    Euclidian distance = 1.4142135623730951
+    Multiplied by reaction path degeneracy 4.0
+    family: Surface_Abstraction_vdW
+- equation: CHX(28) + CH4X(24) <=> CH2X(26) + CH3X(27)  # Reaction 59
+  rate-constant: {A: 4.147872e+17, b: 0.937, Ea: 29.088}
+  note: |-
+    Reaction index: Chemkin #59; RMG #646
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: CH4X(24), CH3X(27); CHX(28), CH2X(26);
+    Estimated using template [AdsorbateVdW;*C] for rate rule [C-R;*#CH]
+    Euclidian distance = 2.23606797749979
+    Multiplied by reaction path degeneracy 4.0
+    family: Surface_Abstraction_vdW
+- equation: CX(29) + CH4X(24) <=> CHX(28) + CH3X(27)  # Reaction 60
+  rate-constant: {A: 4.147872e+17, b: 0.937, Ea: 29.088}
+  note: |-
+    Reaction index: Chemkin #60; RMG #648
+    Template reaction: Surface_Abstraction_vdW
+    Flux pairs: CH4X(24), CH3X(27); CX(29), CHX(28);
+    Estimated using template [AdsorbateVdW;*C] for rate rule [C-R;*$C]
+    Euclidian distance = 1.4142135623730951
+    Multiplied by reaction path degeneracy 4.0
+    family: Surface_Abstraction_vdW
+- equation: OHX(31) + CH4X(24) <=> H2OX(32) + CH3X(27)  # Reaction 61
+  rate-constant: {A: 4.0e+17, b: 0.0, Ea: 0.0}
+  note: |-
+    Reaction index: Chemkin #61; RMG #650
+    Template reaction: Surface_Abstraction_Single_vdW
+    Flux pairs: CH4X(24), CH3X(27); OHX(31), H2OX(32);
+    Estimated using template [Donating;Abstracting] for rate rule [C-R;*O-H]
+    Euclidian distance = 2.23606797749979
+    Multiplied by reaction path degeneracy 4.0
+    family: Surface_Abstraction_Single_vdW
+    Ea raised from -34.6 to 0.0 kJ/mol.
+- equation: CH2X(26) + CH2X(26) <=> CHX(28) + CH3X(27)  # Reaction 62
+  rate-constant: {A: 2.78e+21, b: 0.101, Ea: 4.541}
+  note: |-
+    Reaction index: Chemkin #62; RMG #660
+    Template reaction: Surface_Abstraction
+    Flux pairs: CH2X(26), CHX(28); CH2X(26), CH3X(27);
+    Estimated using template [C=*;*R-H] for rate rule [C=*;*=C-H]
+    Euclidian distance = 2.0
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Abstraction
+- equation: CX(29) + CH3X(27) <=> CHX(28) + CH2X(26)  # Reaction 63
+  rate-constant: {A: 8.492777e+21, b: -0.156, Ea: 14.209}
+  note: |-
+    Reaction index: Chemkin #63; RMG #663
+    Template reaction: Surface_Abstraction
+    Flux pairs: CX(29), CHX(28); CH3X(27), CH2X(26);
+    Estimated using average of templates [Abstracting;*-C-H] + [C$*;*R-H] for rate rule [C$*;*-C-H]
+    Euclidian distance = 2.0
+    Multiplied by reaction path degeneracy 3.0
+    family: Surface_Abstraction
+- equation: CX(29) + CH2X(26) <=> CHX(28) + CHX(28)  # Reaction 64
+  rate-constant: {A: 4.86e+21, b: -0.312, Ea: 28.418}
+  note: |-
+    Reaction index: Chemkin #64; RMG #664
+    Template reaction: Surface_Abstraction
+    Flux pairs: CH2X(26), CHX(28); CX(29), CHX(28);
+    Estimated using template [C$*;*R-H] for rate rule [C$*;*=C-H]
+    Euclidian distance = 2.0
+    Multiplied by reaction path degeneracy 2.0
+    family: Surface_Abstraction
+- equation: X(1) + X(1) + C2H4(62) <=> CHX(28) + CH3X(27)  # Reaction 65
+  sticking-coefficient: {A: 0.015, b: 0.0, Ea: 1.195}
+  note: |-
+    Reaction index: Chemkin #65; RMG #703
+    Template reaction: Surface_Adsorption_Dissociative
+    Flux pairs: C2H4(62), CH3X(27); X(1), CHX(28); X(1), CHX(28);
+    Estimated using an average for rate rule [Adsorbate;VacantSite1;VacantSite2]
+    Euclidian distance = 0
+    family: Surface_Adsorption_Dissociative
