@@ -2,6 +2,6 @@
 *.csv
 PES_plotter
 .ipynb_checkpoints
-**/logs
-**/logs_arr
+logs
+logs_arr
 
