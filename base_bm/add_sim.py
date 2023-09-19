@@ -6,7 +6,7 @@ import shutil
 import subprocess
 import multiprocessing
 
-with open(os.path.join('/work/westgroup/chao/sketches/cpox_sim/bm_models_final', 'simulation.py')) as infile:
+with open(os.path.join('/work/westgroup/chao/bm_project', 'simulation.py')) as infile:
     input_file = infile.read()
 
 base_directory = 'binding_energies'
@@ -21,7 +21,7 @@ def make_input(binding_energies):
     carbon, oxygen, index = binding_energies
     output = input_file
     out_dir = directory(carbon, oxygen, index)
-    new_dir = f"out_root = '/work/westgroup/chao/sketches/cpox_sim/bm_models_final/base_bm/{out_dir}'"
+    new_dir = f"out_root = '/work/westgroup/chao/bm_project/base_bm/{out_dir}'"
     output = re.sub("out_root = \'/home/xu.chao/sketches/cpox_sim/rmg_models/base_cathub\'", new_dir, output)
     os.path.exists(out_dir) or os.makedirs(out_dir)
     out_file = os.path.join(out_dir, 'simulation.py')

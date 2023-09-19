@@ -10,7 +10,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --array=1-81
 # Define useful bash variables
-conda activate rmg_env
+source activate rmg_env
 RUN_i=$SLURM_ARRAY_TASK_ID
 b_energies=()
 for value1 in $(seq 5.5 0.25 7.5)
@@ -25,3 +25,4 @@ done
 surf="${b_energies[$index]}"
 cd "${RUN_i}.0_${surf}"
 python simulation.py
+# python sim_integrated_mass.py

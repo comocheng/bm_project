@@ -119,34 +119,7 @@ def plot_gas(data, path_to_cti, x_lim=None):
                         species_name = species_name[0:-3]
                     else:
                         species_name = species_name[0:-4]
-                # if species_name == "O2":
-                #     axs.annotate("O$_2$", fontsize=12, color='y',
-                #                     xy=(dist_array[900], gas_out[:, i][900] + gas_out[:, i][900] / 100.0),
-                #                     va='bottom', ha='center')
-                # elif species_name == "CO2":
-                #     axs.annotate("CO$_2$", fontsize=12, color='c',
-                #                     xy=(dist_array[2300], gas_out[:, i][2300] + gas_out[:, i][2300] / 10.0), va='bottom',
-                #                     ha='center')
-                # elif species_name == "CO":
-                #     axs.annotate("CO", fontsize=12, color='m',
-                #                     xy=(dist_array[1500], gas_out[:, i][1500] + 0.001),
-                #                     va='top', ha='center')
-                # elif species_name == "H2":
-                #     axs.annotate("H$_2$", fontsize=12, color='g',
-                #                     xy=(dist_array[2200], gas_out[:, i][2200] - 0.001),
-                #                     va='top', ha='center')
-                # elif species_name == "CH4":
-                #     axs.annotate("CH$_4$", fontsize=12, color='b',
-                #                     xy=(dist_array[900], gas_out[:, i][900] + gas_out[:, i][900] / 100.0),
-                #                     va='bottom', ha='center')
-                # elif species_name == "H2O":
-                #     axs.annotate("H$_2$O", fontsize=12, color='k',
-                #                     xy=(dist_array[1800], gas_out[:, i][1800] + gas_out[:, i][1800] / 40.0 + 0.001), va='bottom',
-                #                     ha='center')
-                # else:
-                #     axs.annotate(species_name, fontsize=12,
-                #                     xy=(dist_array[-1], gas_out[:, i][-1] + gas_out[:, i][-1] / 10.0), va='top',
-                #                     ha='center')
+
             else:
                 axs.plot(0, 0)
 
@@ -309,15 +282,6 @@ def monolith_simulation(path_to_cti, temp, mol_in, rtol, atol, verbose=False, se
     sim.max_err_test_fails = 12
 
     # set relative and absolute tolerances on the simulation
-    # ratio=0.8
-#     sim.rtol = 1.0e-9
-#     sim.atol = 1.0e-18
-#     ratio=0.9
-#     sim.rtol = 1.0e-8
-#     sim.atol =1.0e-17
-    #ratio=0.6
-#     sim.rtol = 1.0e-9
-#     sim.atol = 1.0e-18
     sim.rtol = rtol
     sim.atol = atol
 
@@ -327,7 +291,8 @@ def monolith_simulation(path_to_cti, temp, mol_in, rtol, atol, verbose=False, se
     surf_out = []
     dist_array = []
     T_array = []
-
+    net_rates_of_progress = []
+    
     rsurf.kinetics.set_multiplier(0.0)  # no surface reactions until the gauze
     for n in range(N_reactors):
         # Set the state of the reservoir to match that of the previous reactor
@@ -347,38 +312,39 @@ def monolith_simulation(path_to_cti, temp, mol_in, rtol, atol, verbose=False, se
         kmole_flow_rate = mass_flow_rate / gas.mean_molecular_weight  # kmol/s
         gas_out.append(1000 * 60 * kmole_flow_rate * r.kinetics.X.copy())  # molar flow rate in moles/minute
         surf_out.append(rsurf.kinetics.X.copy())
-
+        net_rates_of_progress.append(rsurf.kinetics.net_rates_of_progress)
         # stop simulation when things are done changing, to avoid getting so many COVDES errors
         if n >= 1001:
             if np.max(abs(np.subtract(gas_out[-2], gas_out[-1]))) < 1e-15:
                 break
 
         # make reaction diagrams
-        # out_dir = 'rxnpath'
-        # os.path.exists(out_dir) or os.makedirs(out_dir)
-        # elements = ['H', 'O']
-        # locations_of_interest = [1000, 1200, 1400, 1600, 1800, 1999]
-        # if sens is False:
-        #     if n in locations_of_interest:
-        #             location = str(int(n / 100))
-        #             diagram = ct.ReactionPathDiagram(surf, 'X')
-        #             diagram.title = 'rxn path'
-        #             diagram.label_threshold = 1e-9
-        #             dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.dot"
-        #             img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.pdf"
-        #             diagram.write_dot(dot_file)
-        #             os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
-        #
-        #             for element in elements:
-        #                 diagram = ct.ReactionPathDiagram(surf, element)
-        #                 diagram.title = element + 'rxn path'
-        #                 diagram.label_threshold = 1e-9
-        #                 dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.dot"
-        #                 img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.pdf"
-        #                 diagram.write_dot(dot_file)
-        #                 os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
-        # else:
-        #     pass
+        out_dir = 'rxnpath'
+        os.path.exists(out_dir) or os.makedirs(out_dir)
+        elements = ['H', 'O', 'C']
+        locations_of_interest = [1045, 1800]
+        if sens is False:
+            if n in locations_of_interest:
+                location = str(int(n / 100))
+                diagram = ct.ReactionPathDiagram(surf, 'X')
+                diagram.title = 'rxn path'
+                diagram.label_threshold = 1e-9
+                dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.dot"
+                img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.png"
+                diagram.write_dot(dot_file)
+                os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+
+                for element in elements:
+                    diagram = ct.ReactionPathDiagram(surf, element)
+                    diagram.title = element + 'rxn path'
+                    diagram.label_threshold = 1e-9
+                    dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.dot"
+                    img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.png"
+                    diagram.write_dot(dot_file)
+                    os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+                
+                # df = pd.DataFrame(surf.net_rates_of_progress)
+                # df.to_csv(f"{out_dir}/net_rates_{ratio:.1f}_{location}.csv")
 
         if verbose is True:
             if not n % 100:
@@ -390,6 +356,13 @@ def monolith_simulation(path_to_cti, temp, mol_in, rtol, atol, verbose=False, se
     gas_names = np.array(gas_names)
     surf_names = np.array(surf_names)
     data_out = gas_out, surf_out, gas_names, surf_names, dist_array, T_array, i_ar, n_surf_reactions
+    
+    net_rates_of_progress = np.array(net_rates_of_progress)
+    df = pd.DataFrame(net_rates_of_progress)
+    
+    out_dir = os.path.join(out_root, 'rates_of_progress')
+    os.path.exists(out_dir) or os.makedirs(out_dir)
+    df.to_csv(f"{out_dir}/net_rates_{ratio:.1f}.csv")
     print(len(dist_array))
     print(f"Finished monolith simulation for CH4 and O2 concs {mol_in[0], mol_in[1]} on thread {threading.get_ident()}")
     return data_out
@@ -455,116 +428,6 @@ def deriv(gas_out):
         deriv.append((gas_out[x+1] - gas_out[x])/.01)
     deriv.append(0.)
     return deriv
-
-
-# def calculate(data, type='sens'):
-#     """
-#     Calculate properties of interest from the raw data
-#     :param data: the data
-#     :param type: 'sens' for sensitivity analyses
-#                  'output' for saving the output csv
-#                  'ratio' for plotting
-#     :return:
-#     """
-#     gas_out_data, gas_names_data, dist_array_data, T_array_data, n_surf_reactions = data
-
-#     reference = []
-#     for a in range(len(gas_names_data)):
-#         reference.append([gas_names_data[a], [gas_out_data[:, a]]])
-
-#     for x in reference:
-#         if x[0] == 'CH4(2)':
-#             ch4_in = x[1][0][0]
-#             ch4_out = x[1][0][-1]
-#             if ch4_out < 0:
-#                 ch4_out = 0.
-#             ch4_depletion = ch4_in - ch4_out
-#             reference_ch4_conv = ch4_depletion / ch4_in  # Sensitivity definition 7: CH4 conversion
-
-#             d_ch4 = deriv(x[1][0])
-#             reference_max_ch4_conv = min(d_ch4)  # Sensitivity definition 15: maximum rate of CH4 conversion
-
-#             conv50_pos = 0
-#             for y in range(len(x[1][0])):
-#                 if (ch4_in - x[1][0][y]) / ch4_in >= 0.5:
-#                     if conv50_pos == 0:
-#                         conv50_pos = y
-#                         reference_dist_to_50_ch4_conv = dist_array_data[conv50_pos] # Sensitivity definition 14: distance to 50% CH4 conversion
-#                 else:
-#                     # never reached 50% conversion
-#                     reference_dist_to_50_ch4_conv = 510.
-#         if x[0] == 'Ar':
-#             ar = x[1][0][-1]
-#         if x[0] == 'O2(3)':
-#             o2_in = x[1][0][0]
-#             o2_out = x[1][0][-1]
-#             if o2_out < 0:
-#                 o2_out = 0.  # O2 can't be negative
-#             elif o2_out > o2_in:
-#                 o2_out = o2_in  # O2 can't be created, to make it equal to O2 in
-#             o2_depletion = o2_in - o2_out
-#             reference_o2_conv = o2_depletion / o2_in  # Sensitivity definition 13: O2 conversion
-#         if x[0] == 'CO(7)':
-#             co_out = x[1][0][-1]
-#         if x[0] == 'H2(6)':
-#             h2_out = x[1][0][-1]
-#         if x[0] == 'H2O(5)':
-#             h2o_out = x[1][0][-1]
-#         if x[0] == 'CO2(4)':
-#             co2_out = x[1][0][-1]
-
-#     ratio = ch4_in / (2 * o2_in)
-
-#     # negative sensitivity is higher selectivity
-#     reference_h2_sel = h2_out / (ch4_depletion * 2)  # Sensitivity definition 5: H2 selectivity
-#     if reference_h2_sel <= 0:
-#         reference_h2_sel = 1.0e-15  # selectivity can't be 0
-
-#     reference_co_sel = co_out / ch4_depletion  # Sensitivity definition 3: CO selectivity
-#     if reference_co_sel <= 0:
-#         reference_co_sel = 1.0e-15  # selectivity can't be 0
-
-#     reference_syngas_selectivity = reference_co_sel + reference_h2_sel  # Sensitivity definition 1: SYNGAS selectivity
-
-#     reference_syngas_yield = reference_syngas_selectivity * reference_ch4_conv  # Sensitivity definition 2: SYNGAS yield
-#     if reference_syngas_yield <= 0:
-#         reference_syngas_yield = 1.0e-15  # yield can't be 0
-
-#     reference_co_yield = co_out / ch4_in  # Sensitivity definition 4: CO % yield
-#     # reference_co_yield = reference_co_sel * reference_ch4_conv
-
-#     reference_h2_yield = h2_out / (2 * ch4_in)  # Sensitivity definition 6: H2 % yield
-#     # reference_h2_yield = reference_h2_sel * reference_ch4_conv
-
-#     # Sensitivity definition 8: H2O + CO2 selectivity
-#     reference_h2o_sel = h2o_out / (ch4_depletion * 2)
-#     reference_co2_sel = co2_out / ch4_depletion
-#     if reference_h2o_sel <= 0:
-#         reference_h2o_sel = 1.0e-15  # H2O selectivity can't be 0
-#     if reference_co2_sel <= 0:
-#         reference_co2_sel = 1.0e-15  # CO2 selectivity can't be 0
-#     reference_full_oxidation_selectivity = reference_h2o_sel + reference_co2_sel
-
-#     # Sensitivity definition 9: H2O + CO2 yield
-#     reference_full_oxidation_yield = reference_full_oxidation_selectivity * reference_ch4_conv
-
-#     # Sensitivity definition 10: exit temperature
-#     reference_exit_temp = T_array_data[-1]
-
-#     # Sensitivity definition 11: peak temperature
-#     reference_peak_temp = max(T_array_data)
-
-#     # Sensitivity definition 12: distance to peak temperautre
-#     reference_peak_temp_dist = dist_array_data[T_array_data.index(max(T_array_data))]
-
-#     if type is 'sens':
-#         return reference_syngas_selectivity, reference_syngas_yield, reference_co_sel, reference_co_yield, reference_h2_sel, reference_h2_yield, reference_ch4_conv, reference_full_oxidation_selectivity, reference_full_oxidation_yield, reference_exit_temp, reference_peak_temp, reference_peak_temp_dist, reference_o2_conv, reference_max_ch4_conv, reference_dist_to_50_ch4_conv
-#     elif type is 'ratio':
-#         return reference_co_sel, reference_h2_sel, reference_ch4_conv, reference_exit_temp, reference_o2_conv, reference_co2_sel, reference_h2o_sel
-#     elif type is 'gas_data':
-#         return ratio, reference
-#     else:
-#         return ratio, ch4_in, ch4_out, co_out, h2_out, h2o_out, co2_out, reference_exit_temp, reference_peak_temp, reference_peak_temp_dist, reference_o2_conv, reference_max_ch4_conv, reference_dist_to_50_ch4_conv
 
 def calculate(data, type='sens'):
     """
@@ -779,18 +642,6 @@ def sensitivity(path_to_cti, old_data, temp, dk, rtol, atol):
     for rxn in range(n_surf_reactions):
         try:
             gas_out, surf_out, gas_names, surf_names, dist_array, T_array, i_ar, n_surf_reactions_from_sim = monolith_simulation(path_to_cti, temp, moles_in, rtol, atol, sens=[dk, rxn])
-            # if len(dist_array) > 2001:
-            #     dist_array = dist_array[0:2001]
-            #     gas_out = gas_out[0:2001]
-            #     surf_out = surf_out[0:2001]
-            #     T_array = T_array[0:2001]
-                
-            # while len(dist_array) < 7001:
-            #     rtol *= 10
-            #     atol *= 10
-            #     print(f"Sensitivity simulation for reaction {rxn} has solver issue, going to try with atol={atol}, rtol={rtol}")
-            #     gas_out, surf_out, gas_names, surf_names, dist_array, T_array, i_ar, n_surf_reactions_from_sim = monolith_simulation(path_to_cti, temp, moles_in, rtol, atol, sens=[dk, rxn])
-                
             c = [gas_out, gas_names, dist_array, T_array, n_surf_reactions_from_sim]
             new_data = calculate(c, type='sens')
             sensitivities = calc_sensitivities(reference_data, new_data, surf, index=rxn)
@@ -819,34 +670,9 @@ def sensitivity_worker(path_to_cti, rtol, atol, data):
     print('Starting sensitivity simulation for a C/O ratio of {:.1f}'.format(data[0]))
     old_data = data[1][0]
     ratio = data[0]
-#     try:
-#         sensitivities = sensitivity(path_to_cti, old_data, t_in, dk)
-#         print('Finished sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
-
-#         reactions = [d[0] for d in sensitivities]  # getting the reactions
-#         rxns_translated = []
-#         for x in reactions:
-#             for key, smile in names.items():
-#                 x = re.sub(re.escape(key), smile, x)
-#             rxns_translated.append(x)
-#         print('Finished translating for C/O ratio of {:.1f}'.format(ratio))
-#         sensitivities = [list(s) for s in sensitivities]
-#         for x in range(len(rxns_translated)):
-#             sensitivities[x][0] = rxns_translated[x]
-#         export(sensitivities, ratio)
-#     except Exception as e:
-#         print(str(e))
-#         sensitivities = sensitivity(path_to_cti, old_data, t_in, dk)
-#         print('Finished sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
     sensitivities = sensitivity(path_to_cti, old_data, t_in, dk, rtol, atol)
     print('Finished sensitivity simulation for a C/O ratio of {:.1f}'.format(ratio))
     reactions = [d[0] for d in sensitivities]  # getting the reactions
-#     rxns_translated = []
-#     for x in reactions:
-#         for key, smile in names.items():
-#             x = re.sub(re.escape(key), smile, x)
-#         rxns_translated.append(x)
-    # print('Finished translating for C/O ratio of {:.1f}'.format(ratio))
     sensitivities = [list(s) for s in sensitivities]
     for x in range(len(reactions)):
         sensitivities[x][0] = reactions[x]
@@ -856,7 +682,7 @@ if __name__ == "__main__":
     
     # ratios = [.6, .7, .8, .9, 1., 1.1, 1.2, 1.3, 1.4, 1.6, 1.8, 2., 2.2, 2.4, 2.6]
     rtols = [1.0e-8]
-    atols = [1.0e-8]
+    atols = [1.0e-16]
     tol_comb = []
     for rtol in rtols:
         for atol in atols:
@@ -870,21 +696,14 @@ if __name__ == "__main__":
         data = pool.map(partial(run_one_simulation, 'cantera.yaml', tols[0], tols[1]), ratios, 1) #use functools partial
         pool.close()
         pool.join()
-        # try:
-        #     data = run_one_simulation('cantera/chem_annotated.cti', tols[0], tols[1], ratios[0])
-        # except Exception as e:
-        #     print(e, f'\n at rtol = {tols[0]}, atol = {tols[1]} for reference data generation')
-        #     continue
         output = []
-        # for r in data:
-        # output.append(calculate(data[1], type='output'))
         for r in data:
             output.append(calculate(r[1], type='output'))
         k = (pd.DataFrame.from_dict(data=output, orient='columns'))
         k.columns = ['C/O ratio', 'CH4 in', 'CH4 out', 'CO out', 'H2 out', 'H2O out', 'CO2 out', 'Exit temp', 'Max temp', 'Dist to max temp', 'O2 conv', 'Max CH4 Conv', 'Dist to 50 CH4 Conv']
         data_dir = os.path.join(out_root, 'sim_data')
         os.path.exists(data_dir) or os.makedirs(data_dir)
-        k.to_csv(os.path.join(out_root, f'sim_data/rtol_{tols[0]}_atol_{tols[1]}_data.csv'), header=True)  # raw data
+        k.to_csv(os.path.join(out_root, f'sim_data/complete_rtol_{tols[0]}_atol_{tols[1]}_data.csv'), header=True)  # raw data
         
         # save gas profiles
         out_dir = os.path.join(out_root, f'gas_profiles')
@@ -899,39 +718,8 @@ if __name__ == "__main__":
             k = (pd.DataFrame(gas_profiles_out))
             k.to_csv(f'{out_dir}/gas_out' + str(ratio) + '.csv', header=True)
         
-        # ratio_comparison = []
-        # for r in data:
-        #     ratio_comparison.append([r[0], calculate(r[1], type='ratio')])
+        ratio_comparison = []
+        for r in data:
+            ratio_comparison.append([r[0], calculate(r[1], type='ratio')])
         
-        # plot_ratio_comparisions('cantera.yaml', ratio_comparison)
-        
-        # species_dict = rmgpy.data.kinetics.KineticsLibrary().get_species('chemkin/species_dictionary.txt')
-        # keys = species_dict.keys()
-        # # get the first listed smiles string for each molecule
-        # smile = []
-        # for s in species_dict:
-        #     smile.append(species_dict[s].molecule[0])
-        #     if len(species_dict[s].molecule) is not 1:
-        #         print('There are %d dupllicate smiles for %s:' % (len(species_dict[s].molecule), s))
-        #         for a in range(len(species_dict[s].molecule)):
-        #             print('%s' % (species_dict[s].molecule[a]))
-        
-        # translate the molecules from above into just smiles strings
-        # smiles = []
-        # for s in smile:
-        #     smiles.append(s.to_smiles())
-        # names = dict(zip(keys, smiles))
-        
-        # worker_input = []
-        # dk = 1.0e-2
-        # # num_threads = min(multiprocessing.cpu_count(), len(data))
-        # # pool = multiprocessing.Pool(processes=num_threads)
-        # # for r in range(len(data)):
-        #     # worker_input.append([data[r][0], [data[r][1]]])
-        # try:
-        #     # pool.map(partial(sensitivity_worker, 'cantera/chem_annotated.cti', tols[0], tols[1]), worker_input, 1)
-        #     sensitivity_worker('cantera/chem_annotated.cti', tols[0], tols[1], [data[0], [data[1]]])
-        # except Exception as e:
-        #     print(str(e))
-        # pool.close()
-        # pool.join()
+        plot_ratio_comparisions('cantera.yaml', ratio_comparison)
