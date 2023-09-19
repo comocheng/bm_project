@@ -80,7 +80,7 @@ rvol = area * reactor_len * porosity
 cat_area = cat_area_per_vol * rvol
 
 # root directory for output files
-out_root = '/work/westgroup/chao/sketches/cpox_sim/bm_models_final/base_bm/binding_energies/21.0_c-6.00o-3.75'
+out_root = '/work/westgroup/chao/bm_project/base_bm/binding_energies/21.0_c-6.00o-3.75'
 
 residence_time = reactor_len / velocity # unit in s
 
@@ -327,7 +327,8 @@ def monolith_simulation(path_to_cti, temp, mol_in, rtol, atol, verbose=False, se
     surf_out = []
     dist_array = []
     T_array = []
-
+    net_rates_of_progress = []
+    
     rsurf.kinetics.set_multiplier(0.0)  # no surface reactions until the gauze
     for n in range(N_reactors):
         # Set the state of the reservoir to match that of the previous reactor
@@ -347,38 +348,39 @@ def monolith_simulation(path_to_cti, temp, mol_in, rtol, atol, verbose=False, se
         kmole_flow_rate = mass_flow_rate / gas.mean_molecular_weight  # kmol/s
         gas_out.append(1000 * 60 * kmole_flow_rate * r.kinetics.X.copy())  # molar flow rate in moles/minute
         surf_out.append(rsurf.kinetics.X.copy())
-
+        net_rates_of_progress.append(rsurf.kinetics.net_rates_of_progress)
         # stop simulation when things are done changing, to avoid getting so many COVDES errors
         if n >= 1001:
             if np.max(abs(np.subtract(gas_out[-2], gas_out[-1]))) < 1e-15:
                 break
 
         # make reaction diagrams
-        # out_dir = 'rxnpath'
-        # os.path.exists(out_dir) or os.makedirs(out_dir)
-        # elements = ['H', 'O']
-        # locations_of_interest = [1000, 1200, 1400, 1600, 1800, 1999]
-        # if sens is False:
-        #     if n in locations_of_interest:
-        #             location = str(int(n / 100))
-        #             diagram = ct.ReactionPathDiagram(surf, 'X')
-        #             diagram.title = 'rxn path'
-        #             diagram.label_threshold = 1e-9
-        #             dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.dot"
-        #             img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.pdf"
-        #             diagram.write_dot(dot_file)
-        #             os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
-        #
-        #             for element in elements:
-        #                 diagram = ct.ReactionPathDiagram(surf, element)
-        #                 diagram.title = element + 'rxn path'
-        #                 diagram.label_threshold = 1e-9
-        #                 dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.dot"
-        #                 img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.pdf"
-        #                 diagram.write_dot(dot_file)
-        #                 os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
-        # else:
-        #     pass
+        out_dir = 'rxnpath'
+        os.path.exists(out_dir) or os.makedirs(out_dir)
+        elements = ['H', 'O', 'C']
+        locations_of_interest = [1045, 1800]
+        if sens is False:
+            if n in locations_of_interest:
+                location = str(int(n / 100))
+                diagram = ct.ReactionPathDiagram(surf, 'X')
+                diagram.title = 'rxn path'
+                diagram.label_threshold = 1e-9
+                dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.dot"
+                img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.png"
+                diagram.write_dot(dot_file)
+                os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+
+                for element in elements:
+                    diagram = ct.ReactionPathDiagram(surf, element)
+                    diagram.title = element + 'rxn path'
+                    diagram.label_threshold = 1e-9
+                    dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.dot"
+                    img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.png"
+                    diagram.write_dot(dot_file)
+                    os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+                
+                # df = pd.DataFrame(surf.net_rates_of_progress)
+                # df.to_csv(f"{out_dir}/net_rates_{ratio:.1f}_{location}.csv")
 
         if verbose is True:
             if not n % 100:
@@ -390,6 +392,13 @@ def monolith_simulation(path_to_cti, temp, mol_in, rtol, atol, verbose=False, se
     gas_names = np.array(gas_names)
     surf_names = np.array(surf_names)
     data_out = gas_out, surf_out, gas_names, surf_names, dist_array, T_array, i_ar, n_surf_reactions
+    
+    net_rates_of_progress = np.array(net_rates_of_progress)
+    df = pd.DataFrame(net_rates_of_progress)
+    
+    out_dir = os.path.join(out_root, 'rates_of_progress')
+    os.path.exists(out_dir) or os.makedirs(out_dir)
+    df.to_csv(f"{out_dir}/net_rates_{ratio:.1f}.csv")
     print(len(dist_array))
     print(f"Finished monolith simulation for CH4 and O2 concs {mol_in[0], mol_in[1]} on thread {threading.get_ident()}")
     return data_out
@@ -585,7 +594,7 @@ def calculate(data, type='sens'):
     
     # if sens_id <= 1000 or sens_id >= 2000:
     #     sens_id = 1010
-    sens_id = 1045
+    sens_id = -1
     
     for x in reference:
         if x[0] == 'CH4(2)':
@@ -856,7 +865,7 @@ if __name__ == "__main__":
     
     # ratios = [.6, .7, .8, .9, 1., 1.1, 1.2, 1.3, 1.4, 1.6, 1.8, 2., 2.2, 2.4, 2.6]
     rtols = [1.0e-8]
-    atols = [1.0e-8]
+    atols = [1.0e-16]
     tol_comb = []
     for rtol in rtols:
         for atol in atols:
@@ -884,7 +893,7 @@ if __name__ == "__main__":
         k.columns = ['C/O ratio', 'CH4 in', 'CH4 out', 'CO out', 'H2 out', 'H2O out', 'CO2 out', 'Exit temp', 'Max temp', 'Dist to max temp', 'O2 conv', 'Max CH4 Conv', 'Dist to 50 CH4 Conv']
         data_dir = os.path.join(out_root, 'sim_data')
         os.path.exists(data_dir) or os.makedirs(data_dir)
-        k.to_csv(os.path.join(out_root, f'sim_data/rtol_{tols[0]}_atol_{tols[1]}_data.csv'), header=True)  # raw data
+        k.to_csv(os.path.join(out_root, f'sim_data/complete_rtol_{tols[0]}_atol_{tols[1]}_data.csv'), header=True)  # raw data
         
         # save gas profiles
         out_dir = os.path.join(out_root, f'gas_profiles')
