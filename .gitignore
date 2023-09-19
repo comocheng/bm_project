@@ -4,4 +4,7 @@ PES_plotter
 .ipynb_checkpoints
 logs
 logs_arr
-
+*.dot
+*.png
+*.pdf
+*.dot-pretty
