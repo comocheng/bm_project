@@ -38,6 +38,9 @@ import multiprocessing
 from functools import partial
 import threading
 import itertools
+from rmgpy.molecule import Molecule
+from rmgpy.data.base import Database
+import subprocess
 # unit conversion factors to SI
 mm = 0.001
 cm = 0.01
@@ -59,6 +62,7 @@ flow_rate = 4.7  # slpm, as seen in as seen in Horn 2007
 tot_flow = 0.208  # constant inlet flow rate in mol/min, equivalent to 4.7 slpm
 flow_rate = flow_rate * .001 / 60  # m^3/s, as seen in as seen in Horn 2007
 velocity = flow_rate / area  # m/s
+MOLECULAR_WEIGHTS = {"H": 1.008, "O": 15.999, "C": 12.011, "N": 14.0067}
 
 # The PFR will be simulated by a chain of 'N_reactors' stirred reactors.
 N_reactors = 7001
@@ -97,6 +101,288 @@ def setup_ct_solution(path_to_cti):
 
     return {'gas':gas, 'surf':surf,"i_ar":i_ar,"n_surf_reactions":surf.n_reactions}
 
+def transient_flux_diagram(reaction_index, surf, out_dir, ratio):
+    """
+    Plot the transient flux diagram at a certain location
+    """
+    location = str(int(reaction_index / 100))
+    diagram = ct.ReactionPathDiagram(surf, 'X')
+    diagram.title = 'rxn path'
+    diagram.label_threshold = 1e-9
+    dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.dot"
+    img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.pdf"
+    diagram.write_dot(dot_file)
+    os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+
+    for element in elements:
+        diagram = ct.ReactionPathDiagram(surf, element)
+        diagram.title = element + 'rxn path'
+        diagram.label_threshold = 1e-9
+        dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.dot"
+        img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.pdf"
+        diagram.write_dot(dot_file)
+        os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
+
+def prettydot(dotfilepath, strip_line_labels=False):
+    """
+    Make a prettier version of the dot file (flux diagram)
+
+    Assumes the species pictures are stored in a directory
+    called 'species_pictures' alongside the dot file.
+    """
+
+    # pictures_directory = os.path.join(os.path.split(dotfilepath)[0], "species_pictures")
+    pictures_directory = "/work/westgroup/chao/sketches/cpox_sim/rmg_models/base_cathub/species"
+
+    if strip_line_labels:
+        print("stripping edge (line) labels")
+
+    # replace this:
+    #  s10 [ fontname="Helvetica", label="C11H23J"];
+    # with this:
+    #  s10 [ shapefile="mols/C11H23J.png" label="" width="1" height="1" imagescale=true fixedsize=true color="white" ];
+
+    reSize = re.compile('size="5,6"\;page="5,6"')
+    reNode = re.compile(
+        '(?P<node>s\d+)\ \[\ fontname="Helvetica",\ label="(?P<label>[^"]*)"\]\;'
+    )
+
+    rePicture = re.compile("(?P<smiles>.+?)\((?P<id>\d+)\)\.png")
+    reLabel = re.compile("(?P<name>.+?)\((?P<id>\d+)\)$")
+
+    species_pictures = dict()
+    for picturefile in os.listdir(pictures_directory):
+        match = rePicture.match(picturefile)
+        if match:
+            species_pictures[match.group("id")] = picturefile
+        else:
+            pass
+            # print(picturefile, "didn't look like a picture")
+
+    filepath = dotfilepath
+
+    if not open(filepath).readline().startswith("digraph"):
+        raise ValueError("{0} - not a digraph".format(filepath))
+
+    infile = open(filepath)
+    prettypath = filepath + "-pretty"
+    outfile = open(prettypath, "w")
+
+    for line in infile:
+        (line, changed_size) = reSize.subn('size="12,12";page="12,12"', line)
+        match = reNode.search(line)
+        if match:
+            label = match.group("label")
+            idmatch = reLabel.match(label)
+            if idmatch:
+                idnumber = idmatch.group("id")
+                if idnumber in species_pictures:
+                    line = (
+                        '%s [ image="%s/%s" label="" width="0.5" height="0.5" imagescale=false fixedsize=false color="none" ];\n'
+                        % (match.group("node"),pictures_directory, species_pictures[idnumber])
+                    )
+
+        # rankdir="LR" to make graph go left>right instead of top>bottom
+
+        if strip_line_labels:
+            line = re.sub('label\s*=\s*"\s*[\d.]+"', 'label=""', line)
+
+        # change colours
+        line = re.sub('color="0.7,\ (.*?),\ 0.9"', r'color="1.0, \1, 0.7*\1"', line)
+
+        outfile.write(line)
+
+    outfile.close()
+    infile.close()
+    print(f"Graph saved to: {prettypath}")
+    return prettypath
+
+def get_current_fluxes(gas, surf):
+    """
+    Get all the current fluxes.
+    Returns a dict like:
+        `fluxes['gas']['C'] = ct.ReactionPathDiagram(self.gas, 'C')` etc.
+    """
+    fluxes = {"gas": dict(), "surf": dict()}
+    for element in "HOC":
+        fluxes["gas"][element] = ct.ReactionPathDiagram(gas, element)
+        fluxes["surf"][element] = ct.ReactionPathDiagram(surf, element)
+    element = "X"  # just the surface
+    fluxes["surf"][element] = ct.ReactionPathDiagram(surf, element)
+    return fluxes
+
+def combine_fluxes(fluxes_dict):
+    """
+    Combined a dict of dicts of flux diagrams into one.
+
+    Fluxes should be a dict with entries like
+        fluxes['gas']['C'] = ct.ReactionPathDiagram(self.gas, 'C')
+
+    Returns the flux diagram a string in the format you'd get from
+    ct.ReactionPathdiagram.get_data()
+    """
+    # getting the entire net rates of the system
+    temp_flux_data = dict()
+    species = set()
+    for element in "HOC":
+        for phase in ("gas", "surf"):
+            data = fluxes_dict[phase][element].get_data().strip().splitlines()
+            if not data:
+                # eg. if there's no gas-phase reactions involving C
+                continue
+            species.update(data[0].split())  # First line is a list of species
+            for line in data[1:]:  # skip the first line
+
+                s1, s2, fwd, rev = line.split()
+                these_fluxes = np.array([float(fwd), float(rev)])
+
+                if all(these_fluxes == 0):
+                    continue
+
+                # multiply by atomic mass of the element
+                these_fluxes *= MOLECULAR_WEIGHTS[element]
+
+                # for surface reactions, multiply by the catalyst area per volume in a reactor
+                if phase == "surf":
+                    these_fluxes *= cat_area_per_vol
+
+                try:
+                    # Try adding in this direction
+                    temp_flux_data[(s1, s2)] += these_fluxes
+                except KeyError:
+                    try:
+                        # Try adding in reverse direction
+                        temp_flux_data[(s2, s1)] -= these_fluxes
+                    except KeyError:
+                        # Neither direction there yet, so create in this direction
+                        temp_flux_data[(s1, s2)] = these_fluxes
+
+    output = " ".join(species) + "\n"
+    output += "\n".join(
+        f"{s1} {s2} {fwd} {rev}" for (s1, s2), (fwd, rev) in temp_flux_data.items()
+    )
+    return output
+
+def write_flux_dot(flux_data_string, out_file_path, threshold=0.01, title=""):
+    """
+    Takes a flux data string fromatted as from ct.ReactionPathdiagram.get_data()
+    (or from combine_fluxes) and makes a graphviz .dot file.
+
+    Fluxes below 'threshold' are not plotted.
+    """
+
+    output = ["digraph reaction_paths {", "center=1;"]
+
+    flux_data = {}
+    species_dict = {}
+    flux_data_lines = flux_data_string.splitlines()
+    species = flux_data_lines[0].split()
+
+    for line in flux_data_lines[1:]:
+        s1, s2, fwd, rev = line.split()
+        net = float(fwd) + float(rev)
+        if net < 0.0:  # if net is negative, switch s1 and s2 so it is positive
+            flux_data[(s2, s1)] = -1 * net
+        else:
+            flux_data[(s1, s2)] = net
+
+        # renaming species to dot compatible names
+        if s1 not in species_dict:
+            species_dict[s1] = "s" + str(len(species_dict) + 1)
+        if s2 not in species_dict:
+            species_dict[s2] = "s" + str(len(species_dict) + 1)
+
+    # getting the arrow widths
+    largest_rate = max(flux_data.values())
+
+    added_species = {}  # dictionary of species that show up on the diagram
+    for (s1, s2), net in flux_data.items():  # writing the node connections
+
+        flux_ratio = net / largest_rate
+        if abs(flux_ratio) < threshold:
+            continue  # don't include the paths that are below the threshold
+
+        pen_width = (
+            1.0 - 4.0 * np.log10(flux_ratio / threshold) / np.log10(threshold) + 1.0
+        )
+        # pen_width = ((net - smallest_rate) / (largest_rate - smallest_rate)) * 4 + 2
+        arrow_size = min(6.0, 0.5 * pen_width)
+        output.append(
+            f'{species_dict[s1]} -> {species_dict[s2]} [fontname="Helvetica", penwidth={pen_width:.2f}, arrowsize={arrow_size:.2f}, color="0.7, {flux_ratio+0.5:.3f}, 0.9", label="{flux_ratio:0.3g}"];'
+        )
+
+        added_species[s1] = species_dict[s1]
+        added_species[s2] = species_dict[s2]
+
+    for (
+        species,
+        s_index,
+    ) in added_species.items():  # writing the species translations
+        output.append(f'{s_index} [ fontname="Helvetica", label="{species}"];')
+
+    title_string = (r"\l " + title) if title else ""
+    output.append(f' label = "Scale = {largest_rate/1000}kg/m^3/s{title_string}";')
+    output.append(' fontname = "Helvetica";')
+    output.append("}\n")
+
+    directory = os.path.split(out_file_path)[0]
+    if directory:
+        os.makedirs(directory, exist_ok=True)
+    with open(out_file_path, "w") as out_file:
+        out_file.write("\n".join(output))
+    return "\n".join(output)
+
+
+def save_flux_diagrams(gas, surf, total_fluxes, path="", suffix="", fmt="png"):
+    """
+    Saves the flux diagrams, in the provided path.
+    The filenames have a suffix if provided,
+    so you can keep them separate and not over-write.
+    fmt can be 'pdf' or 'png'
+    """
+    strings = []
+    # Now do the combined flux
+    for name, fluxes_dict in [
+        ("mass", get_current_fluxes(gas, surf)),
+        ("integrated mass", total_fluxes),
+    ]:
+
+        flux_data_string = combine_fluxes(fluxes_dict)
+        strings.append(flux_data_string)
+        dot_file = os.path.join(
+            path,
+            f"reaction_path_{name.replace(' ','_')}{'_' if suffix else ''}{suffix}_total.dot",
+        )
+        img_file = os.path.join(
+            path,
+            f"reaction_path_{name.replace(' ','_')}{'_' if suffix else ''}{suffix}_total.{fmt}",
+        )
+        write_flux_dot(
+            flux_data_string,
+            dot_file,
+            threshold=0.01,
+            title=f"Reaction path diagram showing combined {name}",
+        )
+        # Unufortunately this code is duplicated above,
+        # so be sure to duplicate any changes you make!
+        pretty_dot_file = prettydot(dot_file)
+
+        subprocess.run(
+            [
+                "dot",
+                os.path.abspath(pretty_dot_file),
+                f"-T{fmt}",
+                "-o",
+                os.path.abspath(img_file),
+                "-Gdpi=72",
+            ],
+            cwd=path,
+            check=True,
+        )
+        print(
+            f"Wrote graphviz output file to '{os.path.abspath(os.path.join(os.getcwd(), img_file))}'."
+        )
+
 def plot_gas(data, path_to_cti, x_lim=None):
     """
     Plots gas-phase species profiles through the PFR.
@@ -119,7 +405,6 @@ def plot_gas(data, path_to_cti, x_lim=None):
                         species_name = species_name[0:-3]
                     else:
                         species_name = species_name[0:-4]
-
             else:
                 axs.plot(0, 0)
 
@@ -129,7 +414,6 @@ def plot_gas(data, path_to_cti, x_lim=None):
     ax2.plot(dist_array, T_array, label='temperature', color='r')
 
     axs.plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, 0.15], linestyle='--', color='xkcd:grey')
-#     print(dist_array[off_catalyst])
     axs.plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, 0.15], linestyle='--', color='xkcd:grey')
     axs.annotate("catalyst", fontsize=13, xy=(dist_array[1500], 0.14), va='center', ha='center')
 
@@ -293,6 +577,7 @@ def monolith_simulation(path_to_cti, temp, mol_in, rtol, atol, verbose=False, se
     T_array = []
     net_rates_of_progress = []
     
+    total_flux = {"gas": dict(), "surf": dict()}
     rsurf.kinetics.set_multiplier(0.0)  # no surface reactions until the gauze
     for n in range(N_reactors):
         # Set the state of the reservoir to match that of the previous reactor
@@ -317,6 +602,31 @@ def monolith_simulation(path_to_cti, temp, mol_in, rtol, atol, verbose=False, se
         if n >= 1001:
             if np.max(abs(np.subtract(gas_out[-2], gas_out[-1]))) < 1e-15:
                 break
+        if n>=1000 and n<2000:
+            # total_flux['gas'], total_flux['surf'] = add_fluxes(gas, surf, total_flux)
+            gas_fluxes = total_flux["gas"]
+            surf_fluxes = total_flux["surf"]
+            for element in "HOC":
+                new_diagram_gas = ct.ReactionPathDiagram(gas, element)
+                new_diagram_gas.get_data() # neccessary before adding this into the other diagrams, this calls build function to build the fluxes first
+                new_diagram_surf = ct.ReactionPathDiagram(surf, element)
+                new_diagram_surf.get_data()
+                try:
+                    gas_fluxes[element].add(new_diagram_gas)
+                except KeyError:
+                    gas_fluxes[element] = new_diagram_gas
+                try:
+                    surf_fluxes[element].add(new_diagram_surf)
+                except KeyError:
+                    surf_fluxes[element] = new_diagram_surf
+            # Now do the 'X' for just the surface
+            element = "X"
+            try:
+                new_diagram_surf = ct.ReactionPathDiagram(surf, element)
+                new_diagram_surf.get_data() # neccessary before adding this into the other diagrams, this calls build to build the fluxes first
+                surf_fluxes[element].add(new_diagram_surf)
+            except KeyError:
+                surf_fluxes[element] = new_diagram_surf
 
         # make reaction diagrams
         out_dir = 'rxnpath'
@@ -325,26 +635,11 @@ def monolith_simulation(path_to_cti, temp, mol_in, rtol, atol, verbose=False, se
         locations_of_interest = [1045, 1800]
         if sens is False:
             if n in locations_of_interest:
-                location = str(int(n / 100))
-                diagram = ct.ReactionPathDiagram(surf, 'X')
-                diagram.title = 'rxn path'
-                diagram.label_threshold = 1e-9
-                dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.dot"
-                img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm.png"
-                diagram.write_dot(dot_file)
-                os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
-
-                for element in elements:
-                    diagram = ct.ReactionPathDiagram(surf, element)
-                    diagram.title = element + 'rxn path'
-                    diagram.label_threshold = 1e-9
-                    dot_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.dot"
-                    img_file = f"{out_dir}/rxnpath-{ratio:.1f}-x-{location}mm-{element}.png"
-                    diagram.write_dot(dot_file)
-                    os.system('dot {0} -Tpng -o{1} -Gdpi=200'.format(dot_file, img_file))
-                
-                # df = pd.DataFrame(surf.net_rates_of_progress)
-                # df.to_csv(f"{out_dir}/net_rates_{ratio:.1f}_{location}.csv")
+                # # plot the transient flux_diagrams
+                # transient_flux_diagram(n, surf, out_dir, ratio)
+                save_flux_diagrams(gas, surf, total_flux, path='rxnpath', suffix=f'{ratio:.1f}_{n}')
+                df = pd.DataFrame(surf.net_rates_of_progress)
+                df.to_csv(f"{out_dir}/net_rates_{ratio:.1f}_{n}.csv")
 
         if verbose is True:
             if not n % 100:
@@ -444,10 +739,6 @@ def calculate(data, type='sens'):
     for a in range(len(gas_names_data)):
         reference.append([gas_names_data[a], [gas_out_data[:, a]]])
     # This is the index the choose 
-    # sens_id = np.array(T_array_data).argmax() // 2
-    
-    # if sens_id <= 1000 or sens_id >= 2000:
-    #     sens_id = 1010
     sens_id = 1045
     
     for x in reference:
@@ -689,21 +980,21 @@ if __name__ == "__main__":
             tol_comb.append([rtol, atol])
     for tols in tol_comb:
         # ratios = [.6, .7, .8, .9, 1., 1.1, 1.2, 1.3, 1.4, 1.6, 1.8, 2., 2.2, 2.4, 2.6]
-        ratios = [.6, 1., 1.1, 1.2, 1.6, 2., 2.6]
+        # ratios = [.6, 1., 1.1, 1.2, 1.6, 2., 2.6]
+        ratios = [.6, 1.]
         data = []
         num_threads = min(multiprocessing.cpu_count(), len(ratios))
         pool = multiprocessing.Pool(processes=num_threads)
         data = pool.map(partial(run_one_simulation, 'cantera.yaml', tols[0], tols[1]), ratios, 1) #use functools partial
         pool.close()
         pool.join()
-        output = []
         for r in data:
             output.append(calculate(r[1], type='output'))
         k = (pd.DataFrame.from_dict(data=output, orient='columns'))
         k.columns = ['C/O ratio', 'CH4 in', 'CH4 out', 'CO out', 'H2 out', 'H2O out', 'CO2 out', 'Exit temp', 'Max temp', 'Dist to max temp', 'O2 conv', 'Max CH4 Conv', 'Dist to 50 CH4 Conv']
         data_dir = os.path.join(out_root, 'sim_data')
         os.path.exists(data_dir) or os.makedirs(data_dir)
-        k.to_csv(os.path.join(out_root, f'sim_data/complete_rtol_{tols[0]}_atol_{tols[1]}_data.csv'), header=True)  # raw data
+        k.to_csv(os.path.join(out_root, f'sim_data/rtol_{tols[0]}_atol_{tols[1]}_data.csv'), header=True)  # raw data
         
         # save gas profiles
         out_dir = os.path.join(out_root, f'gas_profiles')
