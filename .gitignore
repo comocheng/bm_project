@@ -1,6 +1,5 @@
 *~
 *.csv
-PES_plotter
 .ipynb_checkpoints
 logs
 logs_arr
